@@ -1815,6 +1815,14 @@ video {
   background-position: center bottom -130%;
 }
 
+.bg-\[center_bottom_0\%\] {
+  background-position: center bottom 0%;
+}
+
+.bg-\[center_bottom_40\%\] {
+  background-position: center bottom 40%;
+}
+
 .bg-no-repeat {
   background-repeat: no-repeat;
 }

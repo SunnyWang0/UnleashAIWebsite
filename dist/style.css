@@ -1755,6 +1755,14 @@ video {
   background-position: center;
 }
 
+.bg-\[center_bottom_80\%\] {
+  background-position: center bottom 80%;
+}
+
+.bg-\[center_bottom_100\%\] {
+  background-position: center bottom 100%;
+}
+
 .bg-no-repeat {
   background-repeat: no-repeat;
 }

@@ -384,32 +384,45 @@ document.addEventListener('DOMContentLoaded', function() {
       const bannerSection = document.querySelector('section.image-wrapper.bg-image');
       
       if (bannerSection) {
+        // Get the data-image-src attribute
+        const imageSrc = bannerSection.getAttribute('data-image-src');
+        if (!imageSrc) return;
+        
+        // Parse all Tailwind classes from the banner section
+        // Extract background-related classes especially positioning classes
+        const allClasses = bannerSection.className.split(' ');
+        const bgPositionClass = allClasses.find(cls => cls.startsWith('bg-[') && cls.includes('_'));
+        const otherBgClasses = allClasses.filter(cls => 
+          cls.startsWith('bg-') || 
+          cls.includes('cover') || 
+          cls.includes('no-repeat') ||
+          cls.includes('fixed')
+        );
+        
         // Create a clone of the background for blurring
         const blurredBg = document.createElement('div');
         blurredBg.className = 'blurred-bg-layer';
         
-        // Get computed style of the original element
-        const computedStyle = getComputedStyle(bannerSection);
-        const bgImage = computedStyle.backgroundImage;
-        const bgPosition = computedStyle.backgroundPosition;
-        const bgSize = computedStyle.backgroundSize;
-        const bgRepeat = computedStyle.backgroundRepeat;
+        // Copy all the background-related classes
+        otherBgClasses.forEach(cls => blurredBg.classList.add(cls));
         
-        // Apply styles to the blurred background layer
-        blurredBg.style.position = 'absolute';
-        blurredBg.style.top = '0';
-        blurredBg.style.left = '0';
-        blurredBg.style.width = '100%';
-        blurredBg.style.height = '100%';
-        blurredBg.style.backgroundImage = bgImage;
-        blurredBg.style.backgroundPosition = bgPosition;
-        blurredBg.style.backgroundSize = bgSize;
-        blurredBg.style.backgroundRepeat = bgRepeat;
+        // Special handling for inline Tailwind positioning class
+        if (bgPositionClass) {
+          // Extract the position value from the class name (e.g., 'center_bottom_24%' from 'bg-[center_bottom_24%]')
+          const positionMatch = bgPositionClass.match(/bg-\[(.*?)\]/);
+          if (positionMatch && positionMatch[1]) {
+            const positionValue = positionMatch[1].replace(/_/g, ' ');
+            blurredBg.style.backgroundPosition = positionValue;
+          }
+        }
+        
+        // Set the background image directly
+        blurredBg.style.backgroundImage = `url('${imageSrc}')`;
         blurredBg.style.filter = 'blur(4px)';
-        blurredBg.style.zIndex = '0';
         
-        // Make sure the section has relative positioning
-        if (computedStyle.position !== 'relative' && computedStyle.position !== 'absolute') {
+        // Make sure the section has relative positioning if not already set
+        if (getComputedStyle(bannerSection).position !== 'relative' && 
+            getComputedStyle(bannerSection).position !== 'absolute') {
           bannerSection.style.position = 'relative';
         }
         
@@ -420,17 +433,12 @@ document.addEventListener('DOMContentLoaded', function() {
           container.style.zIndex = '2';
         }
         
-        // Make sure the overlay is above the blurred background
-        const overlay = bannerSection.querySelector('.bg-overlay:before');
-        if (overlay) {
-          overlay.style.zIndex = '1';
-        }
-        
         // Insert the blurred background at the beginning of the section
         bannerSection.insertBefore(blurredBg, bannerSection.firstChild);
         
-        // Hide the original background
-        bannerSection.style.backgroundImage = 'none';
+        // Important: DO NOT remove the original background image or classes
+        // This preserves the background image for browsers that don't support JavaScript
+        // and ensures all CSS classes continue to function correctly
       }
     }
   }

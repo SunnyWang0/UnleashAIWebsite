@@ -1,3 +1,9 @@
+/**
+ * UnleashAI Image Optimization System
+ * This file handles progressive image loading and special image effects
+ * including background blur effects for case study pages
+ */
+
 /* Progressive Image Loading */
 img {
   transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
@@ -26,6 +32,13 @@ img[src*="Logo"],
   height: 100%;
   filter: blur(4px);
   z-index: 0;
+  /* Ensure it maintains all original background properties */
+  background-size: inherit;
+  background-position: inherit;
+  background-repeat: inherit;
+  background-attachment: inherit;
+  /* Ensure it works with the overlay */
+  pointer-events: none;
 }
 
 img.loading {

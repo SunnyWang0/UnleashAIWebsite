@@ -23,6 +23,22 @@
 	<link rel="stylesheet" type="text/css" href="./assets/fonts/unicons/unicons.css">
   <link rel="stylesheet" href="./assets/css/plugins.css">
   <link rel="stylesheet" href="./style.css">
+  <!-- Style override for fixed header button -->
+  <style>
+    body {
+      background-color: #21262c;
+    }
+    .navbar.navbar-light.fixed .btn:not(.btn-expand):not(.btn-gradient) {
+      background: #54a8c7 !important;
+      border-color: #54a8c7 !important;
+      color: #ffffff !important;
+    }
+    /* Make nav links aqua on hover/focus in the fixed white header */
+    .navbar.navbar-light.fixed .nav-link:hover,
+    .navbar.navbar-light.fixed .nav-link:focus {
+      color: #54a8c7 !important;
+    }
+  </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B2LXPEVZV0">
   </script>
@@ -37,7 +53,7 @@
 
 <body>
   <div class="grow shrink-0">
-    <header class="relative wrapper bg-soft-primary !bg-[#edf2fc]">
+    <header class="relative wrapper bg-[#21262c]">
       <nav class="navbar navbar-expand-lg center-nav transparent !absolute navbar-dark xl:pt-[.3rem] lg:pt-[.3rem]">
         <div class="container xl:flex-row lg:flex-row !flex-nowrap items-center">
           <div class="navbar-brand w-full">
@@ -58,14 +74,13 @@
                     <a class="nav-link !text-[.85rem] !tracking-[normal]" href="./index.html">Home</a>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link !text-[.85rem] !tracking-[normal]" href="./projects.html">Projects</a>
+                    <a class="nav-link !text-[.85rem] !tracking-[normal]" href="./case-studies.html">Case Studies</a>
                   </li>
                 </ul>
               </div>
               <div class="offcanvas-footer xl:hidden lg:hidden">
                 <div>
                   <a href="mailto:unleashai.inquiries@gmail.com" class="link-inverse">unleashai.inquiries@gmail.com</a>
-                  <br>(734) 905 2026<br>
                   <nav class="nav social social-white mt-4">
                   <a class="text-[#cacaca] text-[1rem] transition-all duration-[0.2s] ease-in-out translate-y-0 motion-reduce:transition-none hover:translate-y-[-0.15rem] m-[0_.7rem_0_0]" href="#"><i class="uil uil-twitter before:content-['\ed59'] !text-white text-[1rem]"></i></a>
                   <a class="text-[#cacaca] text-[1rem] transition-all duration-[0.2s] ease-in-out translate-y-0 motion-reduce:transition-none hover:translate-y-[-0.15rem] m-[0_.7rem_0_0]" href="#"><i class="uil uil-facebook-f before:content-['\eae2'] !text-white text-[1rem]"></i></a>
@@ -101,91 +116,83 @@
     </header>
     <!-- /header -->
     <section class="wrapper bg-[#21262c] opacity-100 text-white">
-      <div class="pt-32 xl:pt-36 lg:pt-36 md:pt-36 pb-16 xl:pb-20 lg:pb-20 md:pb-20 !text-center">
+      <div class="pt-32 xl:pt-36 lg:pt-36 md:pt-36 pb-8 xl:pb-10 lg:pb-10 md:pb-10 !text-center">
         <div class="container">
           <div class="flex flex-wrap justify-center">
             <div class="sm:w-10/12 md:w-8/12 lg:w-7/12 xl:w-7/12 xxl:w-6/12 flex-[0_0_auto] px-[15px] max-w-full !mx-auto">
-              <h1 class="text-[2rem] xl:text-[2.5rem] font-bold leading-[1.2] text-white !mb-4">Get in Touch</h1>
-              <p class="lead !text-[1rem] !leading-[1.6] font-medium text-[#aab0bc] max-w-2xl mx-auto">Ready to elevate your business and join the AI revolution?</p>
+              <h1 class="text-[1.75rem] xl:text-[2.25rem] font-bold leading-[1.2] text-white !mb-4">Get in Touch</h1>
+              <p class="lead !text-[0.9rem] !leading-[1.6] font-medium text-[#aab0bc] max-w-2xl mx-auto">Ready to elevate your business and join the AI revolution?</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="wrapper !bg-[#f5f5f5]">
+    <section class="wrapper bg-[#21262c]">
       <div class="container !pb-[0.02rem] xl:!pb-1 lg:!pb-1 md:!pb-1">
         <div class="flex flex-wrap mx-[-15px]">
-          <div class="col flex-[0_0_auto] max-w-full px-[15px] relative z-[3] mt-[-6rem] mb-24 w-full md:w-10/12 lg:w-11/12 xl:w-full mx-auto">
+          <div class="col flex-[0_0_auto] max-w-full px-[15px] relative z-[3] mt-[-6rem] mb-12 w-full md:w-10/12 lg:w-11/12 xl:w-full mx-auto">
           </div>
         </div>
       </div>
     </section>
         <!-- /.row -->
         <div class="flex flex-wrap mx-[-15px]">
-          <div class="xl:w-10/12 w-full flex-[0_0_auto] px-[15px] max-w-full !mx-auto">
-            <div class="flex flex-wrap mx-[-15px] mt-[-20px] xl:mx-[-35px] lg:mx-[-20px] bg-white rounded-lg shadow-[0_0.25rem_1.75rem_rgba(30,34,40,0.07)] p-8 xl:p-12 lg:p-12">
-              <div class="xl:w-8/12 lg:w-8/12 w-full flex-[0_0_auto] xl:px-[35px] lg:px-[20px] px-[15px] max-w-full mt-[50px]">
+          <div class="md:w-10/12 lg:w-9/12 xl:w-8/12 w-full flex-[0_0_auto] px-[15px] max-w-full !mx-auto">
+            <div class="flex flex-wrap mx-[-15px] mt-[-20px] xl:mx-[-35px] lg:mx-[-20px] bg-white rounded-lg shadow-[0_0.25rem_1.75rem_rgba(30,34,40,0.07)] px-6 lg:px-8 py-4 lg:py-6">
+              <div class="w-full flex-[0_0_auto] max-w-full mt-[50px]">
                 <form action="https://formspree.io/f/xkgwnkdb" method="POST" class="needs-validation">
                   <div class="messages"></div>
                   <div class="flex flex-wrap mx-[-10px]">
                     <div class="xl:w-6/12 lg:w-6/12 md:w-6/12 w-full flex-[0_0_auto] px-[15px] max-w-full">
                       <div class="form-floating relative !mb-6">
-                        <input id="form_name" type="text" name="name" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[rgba(8,60,130,0.07)] transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[rgba(63,120,224,0.5)] focus-visible:!border-[rgba(63,120,224,0.5)] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] h-[calc(2.8rem_+_2px)] min-h-[calc(2.8rem_+_2px)] leading-[1.25]" placeholder="Jane" required>
+                        <input id="form_name" type="text" name="name" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[#54a8c7] border-opacity-30 transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[#54a8c7] focus-visible:!border-[#54a8c7] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] h-[calc(2.8rem_+_2px)] min-h-[calc(2.8rem_+_2px)] leading-[1.25]" placeholder="Jane" required>
                         <label for="form_name" class="text-[#959ca9] mb-2 inline-block text-[.8rem] absolute z-[2] h-full overflow-hidden text-start text-ellipsis whitespace-nowrap pointer-events-none border origin-[0_0] px-4 py-[0.7rem] border-solid border-transparent left-0 top-0 font-Manrope">First Name *</label>
                       </div>
                     </div>
                     <div class="xl:w-6/12 lg:w-6/12 md:w-6/12 w-full flex-[0_0_auto] px-[15px] max-w-full">
                       <div class="form-floating relative !mb-6">
-                        <input id="form_lastname" type="text" name="surname" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[rgba(8,60,130,0.07)] transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[rgba(63,120,224,0.5)] focus-visible:!border-[rgba(63,120,224,0.5)] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] h-[calc(2.8rem_+_2px)] min-h-[calc(2.8rem_+_2px)] leading-[1.25]" placeholder="Doe" required>
+                        <input id="form_lastname" type="text" name="surname" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[#54a8c7] border-opacity-30 transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[#54a8c7] focus-visible:!border-[#54a8c7] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] h-[calc(2.8rem_+_2px)] min-h-[calc(2.8rem_+_2px)] leading-[1.25]" placeholder="Doe" required>
                         <label for="form_lastname" class="text-[#959ca9] mb-2 inline-block text-[.8rem] absolute z-[2] h-full overflow-hidden text-start text-ellipsis whitespace-nowrap pointer-events-none border origin-[0_0] px-4 py-[0.7rem] border-solid border-transparent left-0 top-0 font-Manrope">Last Name *</label>
                       </div>
                     </div>
                     <div class="xl:w-6/12 lg:w-6/12 md:w-6/12 w-full flex-[0_0_auto] px-[15px] max-w-full">
                       <div class="form-floating relative !mb-6">
-                        <input id="form_email" type="email" name="email" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[rgba(8,60,130,0.07)] transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[rgba(63,120,224,0.5)] focus-visible:!border-[rgba(63,120,224,0.5)] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] h-[calc(2.8rem_+_2px)] min-h-[calc(2.8rem_+_2px)] leading-[1.25]" placeholder="jane.doe@example.com" required>
+                        <input id="form_email" type="email" name="email" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[#54a8c7] border-opacity-30 transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[#54a8c7] focus-visible:!border-[#54a8c7] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] h-[calc(2.8rem_+_2px)] min-h-[calc(2.8rem_+_2px)] leading-[1.25]" placeholder="jane.doe@example.com" required>
                         <label for="form_email" class="text-[#959ca9] mb-2 inline-block text-[.8rem] absolute z-[2] h-full overflow-hidden text-start text-ellipsis whitespace-nowrap pointer-events-none border origin-[0_0] px-4 py-[0.7rem] border-solid border-transparent left-0 top-0 font-Manrope">Email *</label>
                       </div>
                     </div>
                     <div class="xl:w-6/12 lg:w-6/12 md:w-6/12 w-full flex-[0_0_auto] px-[15px] max-w-full">
                       <div class="form-floating relative !mb-6">
-                        <input id="form_phone" type="phone" name="phone" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[rgba(8,60,130,0.07)] transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[rgba(63,120,224,0.5)] focus-visible:!border-[rgba(63,120,224,0.5)] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] h-[calc(2.8rem_+_2px)] min-h-[calc(2.8rem_+_2px)] leading-[1.25]" placeholder="(123) 456-7890">
+                        <input id="form_phone" type="phone" name="phone" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[#54a8c7] border-opacity-30 transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[#54a8c7] focus-visible:!border-[#54a8c7] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] h-[calc(2.8rem_+_2px)] min-h-[calc(2.8rem_+_2px)] leading-[1.25]" placeholder="(123) 456-7890">
                         <label for="form_phone" class="text-[#959ca9] mb-2 inline-block text-[.8rem] absolute z-[2] h-full overflow-hidden text-start text-ellipsis whitespace-nowrap pointer-events-none border origin-[0_0] px-4 py-[0.7rem] border-solid border-transparent left-0 top-0 font-Manrope">Phone Number</label>
                       </div>
                     </div>
                     <div class="w-full flex-[0_0_auto] px-[15px] max-w-full">
                       <div class="form-floating relative !mb-6">
-                        <textarea id="form_message" name="message" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[rgba(8,60,130,0.07)] transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[rgba(63,120,224,0.5)] focus-visible:!border-[rgba(63,120,224,0.5)] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] min-h-[150px] leading-[1.5]" placeholder="Your message" required></textarea>
+                        <textarea id="form_message" name="message" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[#54a8c7] border-opacity-30 transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[#54a8c7] focus-visible:!border-[#54a8c7] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] min-h-[150px] leading-[1.5]" placeholder="Your message" required></textarea>
                         <label for="form_message" class="text-[#959ca9] mb-2 inline-block text-[.8rem] absolute z-[2] h-full overflow-hidden text-start text-ellipsis whitespace-nowrap pointer-events-none border origin-[0_0] px-4 py-[0.7rem] border-solid border-transparent left-0 top-0 font-Manrope">Message *</label>
                       </div>
                     </div>
                     <div class="w-full flex-[0_0_auto] px-[15px] max-w-full">
-                      <input type="submit" class="btn btn-primary text-white !bg-[#3f78e0] border-[#3f78e0] hover:text-white hover:bg-[#3f78e0] hover:border-[#3f78e0] focus:shadow-[rgba(92,140,229,1)] active:text-white active:bg-[#3f78e0] active:border-[#3f78e0] disabled:text-white disabled:bg-[#3f78e0] disabled:border-[#3f78e0] !rounded-[50rem] !mb-3 hover:translate-y-[-0.15rem] hover:shadow-[0_0.25rem_0.75rem_rgba(30,34,40,0.15)] text-[.8rem] font-semibold py-2.5 px-5" value="Send message">
-                      <p class="text-[#aab0bc] text-[.75rem] mt-2"><strong>*</strong> These fields are required.</p>
+                      <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-4">
+                        <div>
+                          <input type="submit" class="btn btn-primary text-white !bg-[#54a8c7] border-[#54a8c7] hover:text-white hover:bg-[#54a8c7] hover:border-[#54a8c7] focus:shadow-[rgba(92,140,229,1)] active:text-white active:bg-[#54a8c7] active:border-[#54a8c7] disabled:text-white disabled:bg-[#54a8c7] disabled:border-[#54a8c7] !rounded-[50rem] !mb-3 hover:translate-y-[-0.15rem] hover:shadow-[0_0.25rem_0.75rem_rgba(30,34,40,0.15)] text-[.8rem] font-semibold py-2.5 px-5" value="Send message">
+                          <p class="text-[#aab0bc] text-[.75rem] mt-2"><strong>*</strong> These fields are required.</p>
+                        </div>
+                        <!-- Moved Email Info -->
+                        <div class="flex flex-row items-center">
+                          <div class="icon text-[#54a8c7] text-[1.2rem] !mr-3">
+                            <i class="uil uil-envelope before:content-['\eac8']"></i>
+                          </div>
+                          <div>
+                            <h5 class="text-[.9rem] font-semibold !mb-1 text-[#343f52]">Or, email us:</h5>
+                            <p class="!mb-0"><a href="mailto:unleashai.inquiries@gmail.com" class="text-[#60697b] text-[.8rem] hover:text-[#54a8c7] transition-colors duration-200">unleashai.inquiries@gmail.com</a></p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>
-              </div>
-              <div class="xl:w-4/12 lg:w-4/12 w-full flex-[0_0_auto] xl:px-[35px] lg:px-[20px] px-[15px] max-w-full mt-[50px]">
-                <div class="flex flex-col space-y-8">
-                  <div class="flex flex-row items-start">
-                    <div class="icon text-[#3f78e0] xl:text-[1.2rem] text-[calc(1.265rem_+_0.18vw)] !mr-4 mt-1">
-                      <i class="uil uil-phone-volume before:content-['\ec50']"></i>
-                    </div>
-                    <div>
-                      <h5 class="text-[.95rem] font-semibold !mb-2">Phone</h5>
-                      <p class="text-[#60697b] text-[.8rem] !mb-0">(734) 905 2026</p>
-                    </div>
-                  </div>
-                  <div class="flex flex-row items-start">
-                    <div class="icon text-[#3f78e0] xl:text-[1.2rem] text-[calc(1.265rem_+_0.18vw)] !mr-4 mt-1">
-                      <i class="uil uil-envelope before:content-['\eac8']"></i>
-                    </div>
-                    <div>
-                      <h5 class="text-[.95rem] font-semibold !mb-2">Email</h5>
-                      <p class="!mb-0"><a class="text-[#60697b] text-[.8rem] hover:text-[#3f78e0] transition-colors duration-200">unleashai.inquiries@gmail.com</a></p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -222,25 +229,25 @@
         <div class="widget text-[#cacaca] text-center">
           <h4 class="widget-title text-white !mb-3">Get in Touch</h4>
           <address class="xl:pr-20 xxl:!pr-28 not-italic leading-[inherit] block mb-4"></address>
-          <a class="text-[#cacaca] hover:text-[#3f78e0]" href="mailto:unleashai.inquiries@gmail.com">unleashai.inquiries@gmail.com</a><br> (734) 905 2026
+          <a class="text-[#cacaca] hover:text-[#54a8c7]" href="mailto:unleashai.inquiries@gmail.com">unleashai.inquiries@gmail.com</a>
         </div>
       </div>
       <div class="md:w-4/12 xl:w-3/12 lg:w-3/12 w-full flex-[0_0_auto] px-[15px] max-w-full xl:mt-0 lg:mt-0 mt-[30px] text-center">
         <div class="widget text-[#cacaca] text-center">
           <h4 class="widget-title text-white !mb-3">Learn More</h4>
           <ul class="pl-0 list-none !mb-0">
-            <li><a class="text-[#cacaca] hover:text-[#3f78e0]" href="./index.html">Home</a></li>
-            <li><a class="text-[#cacaca] hover:text-[#3f78e0]" href="./terms.html">Terms and Conditions</a></li>
-            <li class="mt-[0.35rem]"><a class="text-[#cacaca] hover:text-[#3f78e0]" href="./projects.html">Projects</a></li>
+            <li><a class="text-[#cacaca] hover:text-[#54a8c7]" href="./index.html">Home</a></li>
+            <li><a class="text-[#cacaca] hover:text-[#54a8c7]" href="./terms.html">Terms and Conditions</a></li>
+            <li class="mt-[0.35rem]"><a class="text-[#cacaca] hover:text-[#54a8c7]" href="./case-studies.html">Case Studies</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
 </footer>
-  <div class="progress-wrap fixed w-[2.3rem] h-[2.3rem] cursor-pointer block shadow-[inset_0_0_0_0.1rem_rgba(128,130,134,0.25)] z-[1010] opacity-0 invisible translate-y-3 transition-all duration-[0.2s] ease-[linear,margin-right] delay-[0s] rounded-[100%] right-6 bottom-6 motion-reduce:transition-none after:absolute after:content-['\e951'] after:text-center after:leading-[2.3rem] after:text-[1.2rem] after:text-[#3f78e0] after:h-[2.3rem] after:w-[2.3rem] after:cursor-pointer after:block after:z-[1] after:transition-all after:duration-[0.2s] after:ease-linear after:left-0 after:top-0 motion-reduce:after:transition-none after:font-Unicons">
+  <div class="progress-wrap fixed w-[2.3rem] h-[2.3rem] cursor-pointer block shadow-[inset_0_0_0_0.1rem_rgba(128,130,134,0.25)] z-[1010] opacity-0 invisible translate-y-3 transition-all duration-[0.2s] ease-[linear,margin-right] delay-[0s] rounded-[100%] right-6 bottom-6 motion-reduce:transition-none after:absolute after:content-['\e951'] after:text-center after:leading-[2.3rem] after:text-[1.2rem] after:text-[#54a8c7] after:h-[2.3rem] after:w-[2.3rem] after:cursor-pointer after:block after:z-[1] after:transition-all after:duration-[0.2s] after:ease-linear after:left-0 after:top-0 motion-reduce:after:transition-none after:font-Unicons">
     <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-      <path class="fill-none stroke-[#3f78e0] stroke-[4] box-border transition-all duration-[0.2s] ease-linear motion-reduce:transition-none" d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+      <path class="fill-none stroke-[#54a8c7] stroke-[4] box-border transition-all duration-[0.2s] ease-linear motion-reduce:transition-none" d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
     </svg>
   </div>
   <script src="./assets/js/plugins.js"></script>

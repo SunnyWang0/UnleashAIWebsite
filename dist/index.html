@@ -45,6 +45,12 @@
         color: #54a8c7 !important;
       }
     }
+
+    /* Make nav links aqua on hover/focus in the fixed white header */
+    .navbar.navbar-light.fixed .nav-link:hover,
+    .navbar.navbar-light.fixed .nav-link:focus {
+      color: #54a8c7 !important;
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B2LXPEVZV0">
@@ -63,7 +69,7 @@
     <img src="./assets/img/svg/logo-dark.svg" alt="UnleashAI Logo" class="loader-logo">
   </div>
   <div class="grow shrink-0">
-    <header class="relative wrapper  bg-[#262b32] opacity-100 ">
+    <header class="absolute top-0 left-0 w-full wrapper z-[10]">
       <nav class="navbar navbar-expand-lg center-nav transparent navbar-dark">
         <div class="container xl:flex-row lg:flex-row !flex-nowrap items-center">
           <div class="navbar-brand w-full">
@@ -88,14 +94,13 @@
                     <a class="nav-link !text-[.85rem] !tracking-[normal]" href="./index.html">Home</a>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link !text-[.85rem] !tracking-[normal]" href="./projects.html">Projects</a>
+                    <a class="nav-link !text-[.85rem] !tracking-[normal]" href="./case-studies.html">Case Studies</a>
                   </li>
                 </ul>
               </div>
               <div class="offcanvas-footer xl:hidden lg:hidden">
                 <div>
                   <a href="mailto:first.last@email.com" class="link-inverse">unleashai.inquiries@gmail.com</a>
-                  <br> (734) 905 2026 <br>
                   <!-- /.social -->
                 </div>
               </div>
@@ -107,8 +112,7 @@
           <div class="navbar-other w-full !flex !ml-auto">
             <ul class="navbar-nav !flex-row !items-center !ml-auto">
               <li class="nav-item hidden xl:block lg:block md:block">
-                <a href="./contact.html"
-                  class="btn btn-sm btn-aqua text-[#343f52] !bg-[#54a8c7] border-[#54a8c7] hover:text-[#343f52] hover:bg-[#54a8c7] hover:border-[#54a8c7] focus:shadow-[rgba(79,152,181,1)] active:text-[#343f52] active:bg-[#54a8c7] active:border-[#54a8c7] disabled:text-[#343f52] disabled:bg-[#54a8c7] disabled:border-[#54a8c7] !text-[.85rem] !rounded-[.4rem] hover:translate-y-[-0.15rem] hover:shadow-[0_0.25rem_0.75rem_rgba(30,34,40,0.15)]">Contact</a>
+                <a href="./contact.html" class="btn btn-sm btn-white !rounded-[50rem] hover:translate-y-[-0.15rem] hover:shadow-[0_0.25rem_0.75rem_rgba(30,34,40,0.15)]">Contact</a>
               </li>
               <li class="nav-item xl:hidden lg:hidden">
                 <button class="hamburger offcanvas-nav-btn"><span></span></button>
@@ -139,33 +143,21 @@
     </header>
     <!-- /header -->
     <section
-      class="wrapper  bg-[#262b32] opacity-100  angled lower-start relative border-0
-     before:content-[''] before:block before:absolute before:z-0 before:border-y-transparent before:border-[#262b32] before:border-0 before:border-solid before:right-0 after:bottom-[-4rem] after:content-[''] after:block after:absolute after:z-0 after:border-l-[100vw] after:border-r-transparent after:border-b-[4rem] after:border-y-transparent after:border-[#262b32] after:border-0 after:border-solid after:right-0">
-      <div class="container pt-7 xl:pt-12 lg:pt-12 md:pt-12 pb-8">
+      class="wrapper image-wrapper bg-image bg-overlay text-white bg-no-repeat bg-cover bg-center relative border-0 before:content-[''] before:block before:absolute before:z-[1] before:w-full before:h-full before:left-0 before:top-0 before:bg-[rgba(30,34,40,0.62)]"
+      data-image-src="./assets/img/photos/hero6.jpg"
+      style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5rem), 0 100%); background-position: center 18%;">
+      <div class="container pt-40 xl:pt-44 lg:pt-44 md:pt-44 pb-40 xl:pb-44 lg:pb-44 md:pb-44 max-w-[1400px]">
         <div class="flex flex-wrap mx-0 mt-[-50px] items-center">
-          <div class="lg:w-6/12 xl:w-6/12 w-full flex-[0_0_auto] max-w-full px-0 mt-[50px]" data-cues="slideInDown"
+          <div class="lg:w-8/12 xl:w-8/12 w-full flex-[0_0_auto] max-w-full px-0 mt-[50px]" data-cues="slideInDown"
             data-group="page-title" data-delay="600">
-            <h1 class="text-[calc(1.375rem_+_1.5vw)] font-bold leading-[1.15] xl:text-[2.5rem] text-white mb-4">Unleash your business's full potential through
-               <br><span class="typer !text-[#54a8c7]  whitespace-nowrap" data-delay="100"
-                data-words="task automation,chatbots,smart scheduling,sales mapping,lead generation,automated reports,sales forecasting,price optimization"></span><span
-                class="cursor text-[#54a8c7] " data-owner="typer"></span></h1>
-            <p class="lead !text-[1.2rem] !leading-[1.5] text-white mb-7 md:!pr-32 xl:pr-0 lg:pr-0 xxl:!pr-20">Don't get left behind in the AI revolution. 
-              We build custom AI solutions that fit your budget and goals, driving growth and efficiency.</p>
-            <div>
+            <h1 class="text-[calc(1.375rem_+_1.5vw)] font-bold leading-[1.15] xl:text-[2.5rem] text-white mb-4">Unleash your business's<br>full potential through <br> AI automated
+               <span class="typer !text-[#54a8c7]  whitespace-nowrap" data-delay="100"
+                data-words="lead generation,chatbots,sales,reports,forecasting"></span><span
+                class="cursor text-[#54a8c7] " data-owner="typer"></span></h1><br>
+            <div class="mt-12">
               <a
-                class="btn btn-lg btn-aqua text-white !bg-[#54a8c7] border-[#54a8c7] hover:text-white hover:bg-[#54a8c7] hover:border-[#54a8c7] focus:shadow-[rgba(79,152,181,1)] active:text-[#343f52] active:bg-[#54a8c7] active:border-[#54a8c7] disabled:text-[#343f52] disabled:bg-[#54a8c7] disabled:border-[#54a8c7] rounded" href="./contact.html">Contact Us</a>
+                class="btn btn-lg btn-aqua text-white !bg-[#54a8c7] border-[#54a8c7] hover:text-white hover:bg-[#54a8c7] hover:border-[#54a8c7] focus:shadow-[rgba(79,152,181,1)] active:text-[#343f52] active:bg-[#54a8c7] active:border-[#54a8c7] disabled:text-[#343f52] disabled:bg-[#54a8c7] disabled:border-[#54a8c7] !rounded-[50rem]" href="./contact.html">Contact Us</a>
             </div>
-          </div>
-          <!-- /column -->
-          <div
-            class="lg:w-5/12 xl:w-5/12 w-full flex-[0_0_auto] max-w-full px-0 mt-[50px] lg:!ml-[8.33333333%] xl:!ml-[8.33333333%] mb-[-8rem] relative z-[3]"
-            data-cues="slideInDown">
-            <div class="!relative">
-              <figure class="!rounded-[.4rem] !shadow-[0_0.25rem_1.75rem_rgba(30,34,40,0.07)]"><img
-                  class="!rounded-[.4rem]" src="./assets/img/photos/front.jpeg"
-                  srcset="./assets/img/photos/front.jpeg 2x" alt="image"></figure>
-            </div>
-            <!-- /div -->
           </div>
           <!-- /column -->
         </div>
@@ -175,7 +167,7 @@
     </section>
     <!-- /section -->
     <section class="wrapper !bg-[#ffffff]">
-      <div class="container pt-36 xl:pt-[12.5rem] lg:pt-[12.5rem] md:pt-[12.5rem] pb-0 xl:pb-6 lg:pb-6 md:pb-6">
+      <div class="container pt-20 xl:pt-[7rem] lg:pt-[7rem] md:pt-[7rem] pb-0 xl:pb-6 lg:pb-6 md:pb-6">
         <div class="flex flex-wrap mx-[-15px]">
           <div class="lg:w-full xl:w-full xxl:w-full w-full flex-[0_0_auto] px-[15px] max-w-full">
             <h2 
@@ -223,7 +215,7 @@
           <!--/column -->
           <div
             class="md:w-6/12 lg:w-3/12 xl:w-3/12 w-full flex-[0_0_auto] px-[15px] xl:px-[20px] lg:px-[20px] md:px-[20px] mt-[40px] max-w-full">
-            <div class="icon btn btn-block btn-lg btn-soft-aqua pointer-events-none !mb-6"> <img src="./assets/img/icons/lineal/insurance.svg" class="svg-inject icon-svg icon-svg-sm text-[#3f78e0] " alt="" /> </div>
+            <div class="icon btn btn-block btn-lg btn-soft-aqua pointer-events-none !mb-6"> <img src="./assets/img/icons/lineal/insurance.svg" class="svg-inject icon-svg icon-svg-sm text-[#54a8c7] " alt="" /> </div>
               <h4 class="!text-[1rem] !leading-[1.45]">Continuous Support</h4>
               <p class="!mb-3">
                 Our commitment doesn't end at deployment. We offer comprehensive extended support, including performance monitoring, regular reviews, and a dedicated support team, 
@@ -254,7 +246,7 @@
             <h3 class="text-[calc(1.315rem_+_0.78vw)] font-bold xl:text-[1.9rem] !leading-[1.25] mb-7">How We Deliver AI Solutions</h3>
             <div class="flex flex-row !mb-6">
               <div>
-                <span class="icon btn btn-block btn-soft-aqua pointer-events-none mr-5"><img src="./assets/img/icons/lineal/target-2.svg" class="svg-inject icon-svg icon-svg-sm text-[#3f78e0] " alt="" /></span>
+                <span class="icon btn btn-block btn-soft-aqua pointer-events-none mr-5"><img src="./assets/img/icons/lineal/target-2.svg" class="svg-inject icon-svg icon-svg-sm text-[#54a8c7] " alt="" /></span>
               </div>
               <div>
                 <h4 class="!mb-1 !text-[1rem] !leading-[1.45]">Discover & Define</h4>
@@ -263,7 +255,7 @@
             </div>
             <div class="flex flex-row !mb-6">
               <div>
-                <span class="icon btn btn-block btn-soft-aqua pointer-events-none mr-5"><img src="./assets/img/icons/lineal/crayons.svg" class="svg-inject icon-svg icon-svg-xs text-[#3f78e0] " alt="" /></span>
+                <span class="icon btn btn-block btn-soft-aqua pointer-events-none mr-5"><img src="./assets/img/icons/lineal/crayons.svg" class="svg-inject icon-svg icon-svg-xs text-[#54a8c7] " alt="" /></span>
               </div>
               <div>
                 <h4 class="!mb-1 !text-[1rem] !leading-[1.45]">Design & Develop</h4>
@@ -272,7 +264,7 @@
             </div>
             <div class="flex flex-row">
               <div>
-                <span class="icon btn btn-block btn-soft-aqua pointer-events-none mr-5"><img src="./assets/img/icons/lineal/sitemap.svg" class="svg-inject icon-svg icon-svg-sm text-[#3f78e0] " alt="" /></span>
+                <span class="icon btn btn-block btn-soft-aqua pointer-events-none mr-5"><img src="./assets/img/icons/lineal/sitemap.svg" class="svg-inject icon-svg icon-svg-sm text-[#54a8c7] " alt="" /></span>
               </div>
               <div>
                 <h4 class="!mb-1 !text-[1rem] !leading-[1.45]">Deploy & Optimize</h4>
@@ -291,14 +283,14 @@
     <!-- /section -->
     <section
       class="wrapper image-wrapper bg-image bg-overlay !bg-fixed bg-no-repeat bg-[center_center] bg-cover relative z-0 before:content-[''] before:block before:absolute before:z-[1] before:w-full before:h-full before:left-0 before:top-0 before:bg-[rgba(30,34,40,.5)]"
-      data-image-src="./assets/img/photos/background2500.jpg">
-      <div class="container py-[8rem]">
+      data-image-src="./assets/img/photos/background.jpg">
+      <div class="container py-[6rem]">
         <div class="flex flex-wrap mx-[-15px]">
           <div class="xl:w-8/12 lg:w-8/12 w-full flex-[0_0_auto] px-[15px] max-w-full">
             <h3
               class="text-[calc(1.315rem_+_0.78vw)] font-bold xl:text-[1.9rem] !leading-[1.25] !mb-6 text-white xxl:pr-32">
               Interested? Schedule a free consultation with our team!</h3>
-            <a href="contact.html" class="btn btn-white !rounded-[.4rem] !text-[.85rem] !mb-0 whitespace-nowrap">Contact Us</a>
+            <a href="contact.html" class="btn btn-white !text-[.85rem] !mb-0 whitespace-nowrap !rounded-[50rem]">Contact Us</a>
           </div>
           <!-- /column -->
         </div>
@@ -308,8 +300,7 @@
     </section>
     <!-- /section -->
     <section
-      class="wrapper !bg-[#ffffff]  angled upper-end relative border-0
-     before:top-[-4rem] before:content-[''] before:block before:absolute before:z-0 before:border-l-transparent before:border-r-[100vw] before:border-t-[4rem] before:border-y-transparent before:border-[#fefefe] before:border-0 before:border-solid before:right-0 after:content-[''] after:block after:absolute after:z-0 after:border-y-transparent after:border-[#fefefe] after:border-0 after:border-solid after:right-0">
+      class="wrapper !bg-[#ffffff] relative border-0">
       <div class="container py-[4.5rem] xl:!py-24 lg:!py-24 md:!py-24">
         <div class="flex flex-wrap mx-[-15px]">
           <div class="lg:w-9/12 xl:w-8/12 xxl:w-7/12 w-full flex-[0_0_auto] px-[15px] max-w-full">
@@ -328,174 +319,78 @@
           <div class="swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <article>
-                  <figure class="overlay overlay-1 hover-scale rounded !mb-6 group"><a href="./SummittEnergy.html"> <img
-                        class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105"
-                        src="./assets/img/photos/summitenergylogo.jpeg" alt="image"></a>
-                    <figcaption
-                      class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] pointer-events-none p-2">
-                      <h5 class="from-top  !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read
-                        More</h5>
+                <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
+                  <a href="./CapitalRaise.html" class="block w-full h-full">
+                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/CapitalRaise.jpg" alt="image">
+                    <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
+                      <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
-                  </figure>
-                  <div class="post-header">
-                    <h2 class="post-title h3 !mb-3 !text-[1.15rem] !leading-[1.4]"><a
-                        class="text-[#343f52] hover:text-[#54a8c7]" href="./SummittEnergy.html">Summitt Energy</a></h2>
-                  </div>
-                  <!-- /.post-header -->
-                  <div class="post-footer">
-                    <ul class="text-[0.7rem] text-[#aab0bc] m-0 p-0 list-none">
-                      <li class="post-date inline-block"><i
-                          class="uil uil-calendar-alt pr-[0.2rem] align-[-.05rem] before:content-['\e9ba']"></i><span>
-                          March 2024
-                          </span></li>
-                      <li
-                        class="post-comments inline-block before:content-[''] before:inline-block before:w-[0.2rem] before:h-[0.2rem] before:opacity-50 before:mx-[0.6rem] before:my-0 before:rounded-[100%] before:bg-[#aab0bc] before:align-[0.15rem] !text-[.75rem]">
-                        <i
-                            class="uil uil-file-alt !text-[.75rem]  pr-[0.2rem] align-[-.05rem] before:content-['\eaec']"></i>Sales Mapping</a>
-                      </li>
-                    </ul>
-                    <!-- /.post-meta -->
-                  </div>
-                  <!-- /.post-footer -->
-                </article>
-                <!-- /article -->
+                  </a>
+                </figure>
+                <div class="post-header">
+                  <h2 class="text-xl font-bold text-[#54a8c7] mb-1">95% Manual Work Reduction</h2>
+                  <p class="text-base font-medium text-[#343f52] mb-0">Real Estate Capital Raise Firm</p>
+                </div>
               </div>
               <!--/.swiper-slide -->
               <div class="swiper-slide">
-                <article>
-                  <figure class="overlay overlay-1 hover-scale rounded !mb-6 group"><a href="./Viasat.html"> <img
-                        class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105"
-                        src="./assets/img/photos/viasatlogo.jpg" alt="image"></a>
-                    <figcaption
-                      class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] pointer-events-none p-2">
-                      <h5 class="from-top  !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read
-                        More</h5>
+                <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
+                  <a href="./EnergyServices.html" class="block w-full h-full">
+                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/EnergyServices.jpg" alt="image">
+                    <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
+                      <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
-                  </figure>
-                  <div class="post-header">
-                    <h2 class="post-title h3 !mb-3 !text-[1.15rem] !leading-[1.4]"><a
-                        class="text-[#343f52] hover:text-[#54a8c7]" href="./Viasat.html">Viasat</a></h2>
-                  </div>
-                  <!-- /.post-header -->
-                  <div class="post-footer">
-                    <ul class="text-[0.7rem] text-[#aab0bc] m-0 p-0 list-none">
-                      <li class="post-date inline-block"><i
-                          class="uil uil-calendar-alt pr-[0.2rem] align-[-.05rem] before:content-['\e9ba']"></i><span>
-                          July 2024
-                          </span></li>
-                      <li
-                        class="post-comments inline-block before:content-[''] before:inline-block before:w-[0.2rem] before:h-[0.2rem] before:opacity-50 before:mx-[0.6rem] before:my-0 before:rounded-[100%] before:bg-[#aab0bc] before:align-[0.15rem] !text-[.75rem]">
-                        <i
-                            class="uil uil-file-alt !text-[.75rem]  pr-[0.2rem] align-[-.05rem] before:content-['\eaec']"></i>Operations Optimization
-                      </li>
-                    </ul>
-                    <!-- /.post-meta -->
-                  </div>
-                  <!-- /.post-footer -->
-                </article>
-                <!-- /article -->
+                  </a>
+                </figure>
+                <div class="post-header">
+                  <h2 class="text-xl font-bold text-[#54a8c7] mb-1">99.5% Task Time Reduction</h2>
+                  <p class="text-base font-medium text-[#343f52] mb-0">Leading Energy Services Provider</p>
+                </div>
               </div>
               <!--/.swiper-slide -->
               <div class="swiper-slide">
-                <article>
-                  <figure class="overlay overlay-1 hover-scale rounded !mb-6 group"><a href="./KurbsideGamerz.html"> <img
-                        class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105"
-                        src="./assets/img/photos/kurbsidegamerzlogo.png" alt="image"></a>
-                    <figcaption
-                      class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] pointer-events-none p-2">
-                      <h5 class="from-top  !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read
-                        More</h5>
+                <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
+                  <a href="./CommunicationsTechnology.html" class="block w-full h-full">
+                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/CommTech_wide.jpg" alt="image">
+                    <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
+                      <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
-                  </figure>
-                  <div class="post-header">
-                    <h2 class="post-title h3 !mb-3 !text-[1.15rem] !leading-[1.4]"><a
-                        class="text-[#343f52] hover:text-[#54a8c7]" href="./KurbsideGamerz.html">Kurbside Gamerz</a></h2>
-                  </div>
-                  <!-- /.post-header -->
-                  <div class="post-footer">
-                    <ul class="text-[0.7rem] text-[#aab0bc] m-0 p-0 list-none">
-                      <li class="post-date inline-block"><i
-                          class="uil uil-calendar-alt pr-[0.2rem] align-[-.05rem] before:content-['\e9ba']"></i><span>
-                            May 2024
-                          </span></li>
-                      <li
-                        class="post-comments inline-block before:content-[''] before:inline-block before:w-[0.2rem] before:h-[0.2rem] before:opacity-50 before:mx-[0.6rem] before:my-0 before:rounded-[100%] before:bg-[#aab0bc] before:align-[0.15rem] !text-[.75rem]">
-                        <i
-                            class="uil uil-file-alt !text-[.75rem]  pr-[0.2rem] align-[-.05rem] before:content-['\eaec']"></i>Customer Service Chatbot
-                      </li>
-                    </ul>
-                    <!-- /.post-meta -->
-                  </div>
-                  <!-- /.post-footer -->
-                </article>
-                <!-- /article -->
+                  </a>
+                </figure>
+                <div class="post-header">
+                  <h2 class="text-xl font-bold text-[#54a8c7] mb-1">$500K+ Cost Savings</h2>
+                  <p class="text-base font-medium text-[#343f52] mb-0">F1000 Communications Technology Leader</p>
+                </div>
               </div>
-
+              <!--/.swiper-slide -->
               <div class="swiper-slide">
-              
-                <article>
-                  <figure class="overlay overlay-1 hover-scale rounded !mb-6 group"><a href="./Humzh.html"> <img
-                        class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105"
-                        src="./assets/img/photos/humzhdownsized.jpeg" alt="image"></a>
-                    <figcaption
-                      class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] pointer-events-none p-2">
-                      <h5 class="from-top  !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read
-                        More</h5>
+                <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
+                  <a href="./EventServices.html" class="block w-full h-full">
+                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/EventServices.jpg" alt="image">
+                    <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
+                      <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
-                  </figure>
-                  <div class="post-header">
-                    <h2 class="post-title h3 !mb-3 !text-[1.15rem] !leading-[1.4]"><a
-                        class="text-[#343f52] hover:text-[#54a8c7]" href="./Humzh.html">Twitch Streamer: Humzh</a></h2>
-                  </div>
-                  <div class="post-footer">
-                    <ul class="text-[0.7rem] text-[#aab0bc] m-0 p-0 list-none">
-                      <li class="post-date inline-block"><i
-                          class="uil uil-calendar-alt pr-[0.2rem] align-[-.05rem] before:content-['\e9ba']"></i><span>
-                          June 2024</span></li>
-                      <li
-                        class="post-comments inline-block before:content-[''] before:inline-block before:w-[0.2rem] before:h-[0.2rem] before:opacity-50 before:mx-[0.6rem] before:my-0 before:rounded-[100%] before:bg-[#aab0bc] before:align-[0.15rem] !text-[.75rem]">
-                        <i
-                            class="uil uil-file-alt !text-[.75rem]  pr-[0.2rem] align-[-.05rem] before:content-['\eaec']"></i>Channel Specific Chat Features
-                      </li>
-                    </ul>
-                    <!-- /.post-meta -->
-                  </div>
-                  <!-- /.post-footer -->
-                </article>
-                <!-- /article -->
+                  </a>
+                </figure>
+                <div class="post-header">
+                  <h2 class="text-xl font-bold text-[#54a8c7] mb-1">97% Time Reduction</h2>
+                  <p class="text-base font-medium text-[#343f52] mb-0">Event Services Agency</p>
+                </div>
               </div>
+              <!--/.swiper-slide -->
               <div class="swiper-slide">
-                <article>
-                  <figure class="overlay overlay-1 hover-scale rounded !mb-6 group"><a href="./Stardom.html"> <img
-                        class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105"
-                        src="./assets/img/photos/tiktok2.jpg" alt="image"></a>
-                    <figcaption
-                      class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] pointer-events-none p-2">
-                      <h5 class="from-top  !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read
-                        More</h5>
+                <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
+                  <a href="./DigitalAsset.html" class="block w-full h-full">
+                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/DigitalAsset.jpg" alt="image">
+                    <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
+                      <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
-                  </figure>
-                  <div class="post-header">
-                    <h2 class="post-title h3 !mb-3 !text-[1.15rem] !leading-[1.4]"><a
-                      class="text-[#343f52] hover:text-[#54a8c7]" href="./Stardom.html">Stardom</a></h2>
-                  </div>
-                  <div class="post-footer">
-                    <ul class="text-[0.7rem] text-[#aab0bc] m-0 p-0 list-none">
-                      <li class="post-date inline-block"><i
-                          class="uil uil-calendar-alt pr-[0.2rem] align-[-.05rem] before:content-['\e9ba']"></i><span>
-                          July 2024</span></li>
-                      <li
-                        class="post-comments inline-block before:content-[''] before:inline-block before:w-[0.2rem] before:h-[0.2rem] before:opacity-50 before:mx-[0.6rem] before:my-0 before:rounded-[100%] before:bg-[#aab0bc] before:align-[0.15rem] !text-[.75rem]">
-                        <i
-                            class="uil uil-file-alt !text-[.75rem]  pr-[0.2rem] align-[-.05rem] before:content-['\eaec']"></i>Video Processing
-                      </li>
-                    </ul>
-                    <!-- /.post-meta -->
-                  </div>
-                  <!-- /.post-footer -->
-                </article>
-                <!-- /article -->
+                  </a>
+                </figure>
+                <div class="post-header">
+                  <h2 class="text-xl font-bold text-[#54a8c7] mb-1">80% Increase in Efficiency</h2>
+                  <p class="text-base font-medium text-[#343f52] mb-0">Digital Asset Firm</p>
+                </div>
               </div>
               <!--/.swiper-slide -->
             </div>
@@ -523,15 +418,15 @@
           <div class="widget text-[#cacaca] text-center">
             <h4 class="widget-title text-white !mb-3">Get in Touch</h4>
             <address class="xl:pr-20 xxl:!pr-28 not-italic leading-[inherit] block mb-4"></address>
-            <a class="text-[#cacaca] hover:text-[#3f78e0]" href="mailto:unleashai.inquiries@gmail.com"> unleashai.inquiries@gmail.com</a><br> (734) 905 2026
+            <a class="text-[#cacaca] hover:text-[#54a8c7]" href="mailto:unleashai.inquiries@gmail.com"> unleashai.inquiries@gmail.com</a>
           </div>
         </div>
         <div class="md:w-4/12 xl:w-3/12 lg:w-3/12 w-full flex-[0_0_auto] px-[15px] max-w-full xl:mt-0 lg:mt-0 mt-[30px] text-center">
           <div class="widget text-[#cacaca] text-center">
             <h4 class="widget-title text-white !mb-3">Learn More</h4>
             <ul class="pl-0 list-none !mb-0">
-              <li><a class="text-[#cacaca] hover:text-[#3f78e0]" href="./terms.html">Terms and Conditions</a></li>
-              <li class="mt-[0.35rem]"><a class="text-[#cacaca] hover:text-[#3f78e0]" href="./projects.html">Projects</a></li>
+              <li><a class="text-[#cacaca] hover:text-[#54a8c7]" href="./terms.html">Terms and Conditions</a></li>
+              <li class="mt-[0.35rem]"><a class="text-[#cacaca] hover:text-[#54a8c7]" href="./case-studies.html">Case Studies</a></li>
             </ul>
           </div>
         </div>

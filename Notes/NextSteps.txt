@@ -1,0 +1,1 @@
+- Remove names for companies and replace with industries

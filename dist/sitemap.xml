@@ -4,55 +4,55 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://www.unleashai.com/</loc>
+    <loc>https://unleashai.site/</loc>
     <lastmod>2024-05-07T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.unleashai.com/case-studies.html</loc>
+    <loc>https://unleashai.site/case-studies.html</loc>
     <lastmod>2024-05-07T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.unleashai.com/contact.html</loc>
+    <loc>https://unleashai.site/contact.html</loc>
     <lastmod>2024-05-07T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.unleashai.com/CapitalRaise.html</loc>
+    <loc>https://unleashai.site/CapitalRaise.html</loc>
     <lastmod>2024-05-07T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.unleashai.com/EnergyServices.html</loc>
+    <loc>https://unleashai.site/EnergyServices.html</loc>
     <lastmod>2024-05-07T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.unleashai.com/CommunicationsTechnology.html</loc>
+    <loc>https://unleashai.site/CommunicationsTechnology.html</loc>
     <lastmod>2024-05-07T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.unleashai.com/EventServices.html</loc>
+    <loc>https://unleashai.site/EventServices.html</loc>
     <lastmod>2024-05-07T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.unleashai.com/DigitalAsset.html</loc>
+    <loc>https://unleashai.site/DigitalAsset.html</loc>
     <lastmod>2024-05-07T12:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.unleashai.com/terms.html</loc>
+    <loc>https://unleashai.site/terms.html</loc>
     <lastmod>2024-05-07T12:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

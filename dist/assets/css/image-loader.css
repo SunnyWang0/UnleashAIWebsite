@@ -41,28 +41,26 @@ img.blur-up.loaded {
   filter: blur(0);
 }
 
-/* Blur-up technique for background images */
+/* Background image handling with CSS variables */
 .bg-image {
-  transition: background-image 0.5s ease-in-out;
-  position: relative;
+  /* Use CSS variable for background image but don't override other inline styles */
+  background-image: var(--bg-image-url);
+  transition: filter 0.5s ease-in-out;
 }
 
-.bg-image.blur-loading::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 0;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
+/* Ensure overlay remains visible regardless of our dynamic background changes */
+.bg-image.bg-overlay::before {
+  z-index: 1;
+  opacity: 1 !important;
 }
 
-.bg-image.blur-loaded::before {
-  opacity: 0;
+/* Blur effect for progressive loading */
+.bg-image.blur-loading {
+  filter: blur(8px);
+}
+
+.bg-image.blur-loaded {
+  filter: blur(0);
 }
 
 /* Connection-aware loading styles */

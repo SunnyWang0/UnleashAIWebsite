@@ -189,16 +189,18 @@ document.addEventListener('DOMContentLoaded', function() {
           smallSrc = targetSrc;
         }
         
-        // First set the small blurry version
-        element.style.backgroundImage = `url('${smallSrc}')`;
+        // Use CSS variable for background image to avoid disrupting Tailwind styles
+        element.style.setProperty('--bg-image-url', `url('${smallSrc}')`);
         
         // Then load the high quality version
         const img = new Image();
         img.onload = function() {
           // Full quality image loaded, update background and remove blur
-          element.style.backgroundImage = `url('${targetSrc}')`;
-          element.classList.remove('blur-loading');
-          element.classList.add('blur-loaded');
+          element.style.setProperty('--bg-image-url', `url('${targetSrc}')`);
+          setTimeout(() => {
+            element.classList.remove('blur-loading');
+            element.classList.add('blur-loaded');
+          }, 100); // Small delay for smoother transition
         };
         img.onerror = function() {
           // If WebP fails, try the original format as fallback
@@ -207,9 +209,11 @@ document.addEventListener('DOMContentLoaded', function() {
             element.classList.remove('blur-loading');
           } else {
             // Try the original format
-            element.style.backgroundImage = `url('${imageSrc}')`;
-            element.classList.remove('blur-loading');
-            element.classList.add('blur-loaded');
+            element.style.setProperty('--bg-image-url', `url('${imageSrc}')`);
+            setTimeout(() => {
+              element.classList.remove('blur-loading');
+              element.classList.add('blur-loaded');
+            }, 100);
           }
         };
         img.src = targetSrc;
@@ -234,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
         preloader.onload = function() {
           // When high-quality image is loaded, update the background
           setTimeout(() => {
-            element.style.backgroundImage = `url('${highQualitySrc}')`;
+            element.style.setProperty('--bg-image-url', `url('${highQualitySrc}')`);
             element.classList.remove('blur-loading');
             element.classList.add('blur-loaded');
           }, 300); // Small delay for smoother transition
@@ -251,65 +255,42 @@ document.addEventListener('DOMContentLoaded', function() {
         if (entry.isIntersecting) {
           const img = entry.target;
           handleImageLoad(img);
-          imgObserver.unobserve(img);
+          observer.unobserve(img);
         }
       });
     }, imgOptions);
     
-    // Prioritize first viewport images
-    prioritizeFirstViewportImages();
-    
-    // Apply blur-up technique
-    applyBlurUpTechnique();
-    
-    // Optimize background images
-    optimizeBackgroundImages();
-    
-    // Preload high-quality background images after a short delay
-    setTimeout(preloadHighQualityBackgroundImages, 100);
-    
-    // Find all images that aren't already loaded
-    const lazyImages = document.querySelectorAll('img:not(.loaded):not(.above-fold)');
+    // Find all images with data-src attribute
+    const lazyImages = document.querySelectorAll('img[data-src], img[data-srcset]');
     lazyImages.forEach(img => {
-      // Add loading="lazy" and decoding="async" for any images missing them
-      if (!img.hasAttribute('loading')) {
-        img.setAttribute('loading', 'lazy');
-      }
-      if (!img.hasAttribute('decoding')) {
-        img.setAttribute('decoding', 'async');
-      }
-      
-      // Start observing the image
       imgObserver.observe(img);
     });
   } else {
     // Fallback for browsers that don't support IntersectionObserver
-    const lazyImages = document.querySelectorAll('img:not(.loaded)');
+    const lazyImages = document.querySelectorAll('img[data-src], img[data-srcset]');
     lazyImages.forEach(img => {
       handleImageLoad(img);
     });
-    
-    // Still optimize background images
-    optimizeBackgroundImages();
   }
   
-  // Initialize images that are above the fold immediately
-  const aboveFoldImages = document.querySelectorAll('img.above-fold');
-  aboveFoldImages.forEach(img => {
-    handleImageLoad(img);
+  // Initialize all background images with CSS variables
+  const bgElements = document.querySelectorAll('.bg-image');
+  bgElements.forEach(element => {
+    const imageSrc = element.getAttribute('data-image-src');
+    if (imageSrc) {
+      // Set initial CSS variable for the background image
+      element.style.setProperty('--bg-image-url', `url('${imageSrc}')`);
+    }
   });
   
-  // Listen for connection changes (if available)
+  // Run initialization
+  prioritizeFirstViewportImages();
+  applyBlurUpTechnique();
+  optimizeBackgroundImages();
+  
+  // Add event listeners for network changes
   if (navigator.connection) {
-    navigator.connection.addEventListener('change', function() {
-      console.log('Connection changed, reoptimizing images...');
-      
-      // Reoptimize visible images that haven't loaded yet
-      const visibleImages = document.querySelectorAll('img.loading:not(.loaded)');
-      visibleImages.forEach(img => {
-        handleImageLoad(img);
-      });
-    });
+    navigator.connection.addEventListener('change', optimizeBackgroundImages);
   }
   
   // Re-check prioritization on resize

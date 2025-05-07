@@ -17,6 +17,11 @@ img[src*="Logo"],
   animation: none !important;
 }
 
+/* Slight blur for case study banner images */
+section.image-wrapper.bg-image {
+  filter: blur(2px);
+}
+
 img.loading {
   opacity: 0.6;
   filter: blur(5px);

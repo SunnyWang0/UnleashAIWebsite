@@ -52,8 +52,26 @@ document.addEventListener('DOMContentLoaded', function() {
     return 'high';
   }
 
+  // Function to check if an image is a logo
+  function isLogo(img) {
+    // Check if the image has any of these logo-related classes or is in a logo path
+    return img.classList.contains('logo-dark') || 
+           img.classList.contains('logo-light') || 
+           img.classList.contains('loader-logo') ||
+           (img.src && img.src.includes('/logo')) ||
+           img.closest('.navbar-brand') !== null;
+  }
+
   // Handle image loading with fade-in effect
   function handleImageLoad(img) {
+    // Skip logos - no loading effects for them
+    if (isLogo(img)) {
+      // Remove any loading classes that might have been applied
+      img.classList.remove('loading');
+      img.classList.remove('blur-up');
+      return;
+    }
+    
     // Add loading class for fade effect
     img.classList.add('loading');
     
@@ -114,6 +132,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const allImages = document.querySelectorAll('img');
     
     allImages.forEach(img => {
+      // Skip logos
+      if (isLogo(img)) {
+        return;
+      }
+      
       const rect = img.getBoundingClientRect();
       
       // Check if image is in first viewport
@@ -144,8 +167,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function applyBlurUpTechnique() {
     const images = document.querySelectorAll('img:not(.no-blur-up)');
     images.forEach(img => {
-      // Skip if already processed
-      if (img.classList.contains('blur-up-processed')) return;
+      // Skip if already processed or is a logo
+      if (img.classList.contains('blur-up-processed') || isLogo(img)) return;
       
       // Create low-quality placeholder if not already in a picture element
       if (!img.parentNode || img.parentNode.tagName !== 'PICTURE') {
@@ -254,6 +277,13 @@ document.addEventListener('DOMContentLoaded', function() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const img = entry.target;
+          
+          // Skip logos
+          if (isLogo(img)) {
+            observer.unobserve(img);
+            return;
+          }
+          
           handleImageLoad(img);
           observer.unobserve(img);
         }
@@ -263,13 +293,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Find all images with data-src attribute
     const lazyImages = document.querySelectorAll('img[data-src], img[data-srcset]');
     lazyImages.forEach(img => {
-      imgObserver.observe(img);
+      // Skip logos
+      if (!isLogo(img)) {
+        imgObserver.observe(img);
+      }
     });
   } else {
     // Fallback for browsers that don't support IntersectionObserver
     const lazyImages = document.querySelectorAll('img[data-src], img[data-srcset]');
     lazyImages.forEach(img => {
-      handleImageLoad(img);
+      // Skip logos
+      if (!isLogo(img)) {
+        handleImageLoad(img);
+      }
     });
   }
   
@@ -298,5 +334,14 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(prioritizeFirstViewportImages, 250);
+  });
+  
+  // Clean up any blur effects that might have been applied to logos
+  document.querySelectorAll('img').forEach(img => {
+    if (isLogo(img)) {
+      img.classList.remove('loading', 'blur-up', 'blur-up-processed');
+      img.style.filter = 'none';
+      img.style.opacity = '1';
+    }
   });
 }); 

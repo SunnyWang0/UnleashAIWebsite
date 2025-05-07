@@ -18,7 +18,8 @@ const config = {
   targetDir: '../dist/assets/img/photos/optimized/',
   sizes: [800, 1200, 1600], // Responsive image sizes
   quality: 80,  // JPEG/WebP quality
-  formats: ['jpg', 'webp'] // Output formats
+  formats: ['jpg', 'webp'], // Output formats
+  sourceFormats: ['jpg', 'jpeg', 'png'] // Source formats to process
 };
 
 // Ensure target directory exists
@@ -26,15 +27,23 @@ if (!fs.existsSync(config.targetDir)) {
   fs.mkdirSync(config.targetDir, { recursive: true });
 }
 
-// Process all JPG images in source directory
+// Process all images in source directory
 async function processImages() {
-  const files = glob.sync(path.join(config.sourceDir, '*.jpg'));
+  // Create a pattern to match all specified source formats
+  const pattern = config.sourceFormats.map(format => path.join(config.sourceDir, `*.${format}`));
+  const files = [];
+  
+  // Gather all files matching the patterns
+  pattern.forEach(pat => {
+    files.push(...glob.sync(pat));
+  });
   
   console.log(`Found ${files.length} images to process`);
   
   for (const file of files) {
     const filename = path.basename(file, path.extname(file));
-    console.log(`Processing ${filename}...`);
+    const sourceFormat = path.extname(file).substring(1).toLowerCase();
+    console.log(`Processing ${filename}.${sourceFormat}...`);
     
     // Load the image
     const image = sharp(file);
@@ -82,11 +91,17 @@ async function processImages() {
 
 // Create an HTML snippet helper
 function createPictureElements() {
-  const files = glob.sync(path.join(config.sourceDir, '*.jpg'));
+  // Get all images of all configured source formats
+  const files = [];
+  config.sourceFormats.forEach(format => {
+    files.push(...glob.sync(path.join(config.sourceDir, `*.${format}`)));
+  });
+  
   let html = '<!-- Generated Picture Elements -->\n';
   
   for (const file of files) {
     const filename = path.basename(file, path.extname(file));
+    const sourceFormat = path.extname(file).substring(1).toLowerCase();
     const sizes = config.sizes.filter(size => size < 1600); // Assuming original is larger
     
     html += `<picture>\n`;
@@ -100,14 +115,15 @@ function createPictureElements() {
       html += `    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw">\n`;
     }
     
-    // Add responsive sizes for JPEG
+    // Add responsive sizes for original format
     if (sizes.length > 0) {
-      html += `  <source type="image/jpeg" \n`;
-      html += `    srcset="${sizes.map(size => `photos/optimized/${filename}-${size}.jpg ${size}w`).join(',\n             ')}" \n`;
+      const mimeType = sourceFormat === 'png' ? 'image/png' : 'image/jpeg';
+      html += `  <source type="${mimeType}" \n`;
+      html += `    srcset="${sizes.map(size => `photos/optimized/${filename}-${size}.${sourceFormat === 'png' ? 'png' : 'jpg'} ${size}w`).join(',\n             ')}" \n`;
       html += `    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw">\n`;
     }
     
-    html += `  <img src="photos/${filename}.jpg" alt="${filename}" loading="lazy" decoding="async" class="rounded">\n`;
+    html += `  <img src="photos/${filename}.${sourceFormat}" alt="${filename}" loading="lazy" decoding="async" class="rounded">\n`;
     html += `</picture>\n\n`;
   }
   

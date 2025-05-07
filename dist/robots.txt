@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/unused/
+
+Sitemap: https://www.unleashai.com/sitemap.xml 

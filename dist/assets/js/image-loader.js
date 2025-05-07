@@ -159,6 +159,91 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  // Optimize background images to use WebP where available
+  function optimizeBackgroundImages() {
+    // Find all elements with bg-image class
+    const bgElements = document.querySelectorAll('.bg-image');
+    
+    // Handle each background image
+    bgElements.forEach(element => {
+      const imageSrc = element.getAttribute('data-image-src');
+      
+      if (imageSrc) {
+        // Add blur-loading class to start the blur effect
+        element.classList.add('blur-loading');
+        
+        // If not already using WebP, try to load it dynamically
+        const isWebP = imageSrc.endsWith('.webp');
+        const targetSrc = isWebP ? imageSrc : imageSrc.replace(/\.(jpg|jpeg|png)$/, '.webp');
+        
+        // First set a smaller version for quick loading
+        let smallSrc;
+        if (targetSrc.includes('-1600.webp')) {
+          smallSrc = targetSrc.replace('-1600.webp', '-800.webp');
+        } else if (targetSrc.includes('-1200.webp')) {
+          smallSrc = targetSrc.replace('-1200.webp', '-800.webp');
+        } else if (!targetSrc.includes('-800.webp')) {
+          // If not already a small version, create one
+          smallSrc = targetSrc.replace('.webp', '-800.webp');
+        } else {
+          smallSrc = targetSrc;
+        }
+        
+        // First set the small blurry version
+        element.style.backgroundImage = `url('${smallSrc}')`;
+        
+        // Then load the high quality version
+        const img = new Image();
+        img.onload = function() {
+          // Full quality image loaded, update background and remove blur
+          element.style.backgroundImage = `url('${targetSrc}')`;
+          element.classList.remove('blur-loading');
+          element.classList.add('blur-loaded');
+        };
+        img.onerror = function() {
+          // If WebP fails, try the original format as fallback
+          if (isWebP) {
+            // Already using WebP, nothing to fall back to
+            element.classList.remove('blur-loading');
+          } else {
+            // Try the original format
+            element.style.backgroundImage = `url('${imageSrc}')`;
+            element.classList.remove('blur-loading');
+            element.classList.add('blur-loaded');
+          }
+        };
+        img.src = targetSrc;
+      }
+    });
+  }
+  
+  // Preload high-quality versions of background images
+  function preloadHighQualityBackgroundImages() {
+    // Find all elements with bg-image class
+    const bgElements = document.querySelectorAll('.bg-image');
+    
+    bgElements.forEach(element => {
+      let imageSrc = element.getAttribute('data-image-src');
+      
+      if (imageSrc && imageSrc.includes('-800.webp')) {
+        // Create the high-quality version path
+        const highQualitySrc = imageSrc.replace('-800.webp', '.webp');
+        
+        // Create and preload the high-quality image in the background
+        const preloader = new Image();
+        preloader.onload = function() {
+          // When high-quality image is loaded, update the background
+          setTimeout(() => {
+            element.style.backgroundImage = `url('${highQualitySrc}')`;
+            element.classList.remove('blur-loading');
+            element.classList.add('blur-loaded');
+          }, 300); // Small delay for smoother transition
+        };
+        preloader.src = highQualitySrc;
+      }
+    });
+  }
+  
   // Check if IntersectionObserver is supported
   if ('IntersectionObserver' in window) {
     const imgObserver = new IntersectionObserver((entries, observer) => {
@@ -176,6 +261,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Apply blur-up technique
     applyBlurUpTechnique();
+    
+    // Optimize background images
+    optimizeBackgroundImages();
+    
+    // Preload high-quality background images after a short delay
+    setTimeout(preloadHighQualityBackgroundImages, 100);
     
     // Find all images that aren't already loaded
     const lazyImages = document.querySelectorAll('img:not(.loaded):not(.above-fold)');
@@ -197,6 +288,9 @@ document.addEventListener('DOMContentLoaded', function() {
     lazyImages.forEach(img => {
       handleImageLoad(img);
     });
+    
+    // Still optimize background images
+    optimizeBackgroundImages();
   }
   
   // Initialize images that are above the fold immediately

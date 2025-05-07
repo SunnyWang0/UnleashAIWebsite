@@ -363,4 +363,78 @@ document.addEventListener('DOMContentLoaded', function() {
       img.removeAttribute('data-srcset');
     }
   });
+  
+  // Apply blur effect to case study banner images
+  function applyCaseStudyBannerBlur() {
+    // Get current page URL
+    const currentUrl = window.location.pathname;
+    
+    // Check if we're on a case study page
+    const caseStudyPages = [
+      'CapitalRaise.html',
+      'EnergyServices.html',
+      'CommunicationsTechnology.html',
+      'EventServices.html',
+      'DigitalAsset.html'
+    ];
+    
+    // Only apply the blur if we're on a case study page
+    if (caseStudyPages.some(page => currentUrl.includes(page))) {
+      // Find the banner section
+      const bannerSection = document.querySelector('section.image-wrapper.bg-image');
+      
+      if (bannerSection) {
+        // Create a clone of the background for blurring
+        const blurredBg = document.createElement('div');
+        blurredBg.className = 'blurred-bg-layer';
+        
+        // Get computed style of the original element
+        const computedStyle = getComputedStyle(bannerSection);
+        const bgImage = computedStyle.backgroundImage;
+        const bgPosition = computedStyle.backgroundPosition;
+        const bgSize = computedStyle.backgroundSize;
+        const bgRepeat = computedStyle.backgroundRepeat;
+        
+        // Apply styles to the blurred background layer
+        blurredBg.style.position = 'absolute';
+        blurredBg.style.top = '0';
+        blurredBg.style.left = '0';
+        blurredBg.style.width = '100%';
+        blurredBg.style.height = '100%';
+        blurredBg.style.backgroundImage = bgImage;
+        blurredBg.style.backgroundPosition = bgPosition;
+        blurredBg.style.backgroundSize = bgSize;
+        blurredBg.style.backgroundRepeat = bgRepeat;
+        blurredBg.style.filter = 'blur(4px)';
+        blurredBg.style.zIndex = '0';
+        
+        // Make sure the section has relative positioning
+        if (computedStyle.position !== 'relative' && computedStyle.position !== 'absolute') {
+          bannerSection.style.position = 'relative';
+        }
+        
+        // Make sure the container is above the blurred background
+        const container = bannerSection.querySelector('.container');
+        if (container) {
+          container.style.position = 'relative';
+          container.style.zIndex = '2';
+        }
+        
+        // Make sure the overlay is above the blurred background
+        const overlay = bannerSection.querySelector('.bg-overlay:before');
+        if (overlay) {
+          overlay.style.zIndex = '1';
+        }
+        
+        // Insert the blurred background at the beginning of the section
+        bannerSection.insertBefore(blurredBg, bannerSection.firstChild);
+        
+        // Hide the original background
+        bannerSection.style.backgroundImage = 'none';
+      }
+    }
+  }
+  
+  // Run the case study banner blur effect
+  applyCaseStudyBannerBlur();
 }); 

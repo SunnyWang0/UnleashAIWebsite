@@ -1,9 +1,3 @@
-/**
- * UnleashAI Image Optimization System
- * This file handles progressive image loading and special image effects
- * including background blur effects for case study pages
- */
-
 /* Progressive Image Loading */
 img {
   transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
@@ -23,22 +17,39 @@ img[src*="Logo"],
   animation: none !important;
 }
 
+/* Case Study Banner Styling */
+section.image-wrapper.bg-image {
+  overflow: hidden; /* Prevent any overflow issues */
+  position: relative; /* Ensure proper positioning */
+}
+
 /* Styling for the blurred background in case studies */
 .blurred-bg-layer {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -10px; /* Extend slightly beyond boundaries to prevent edge artifacts */
+  left: -10px;
+  width: calc(100% + 20px); /* Compensate for the negative positioning */
+  height: calc(100% + 20px);
   filter: blur(4px);
   z-index: 0;
-  /* Ensure it maintains all original background properties */
-  background-size: inherit;
-  background-position: inherit;
-  background-repeat: inherit;
-  background-attachment: inherit;
-  /* Ensure it works with the overlay */
-  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scale(1.02); /* Slight scale to prevent edges from showing */
+  will-change: transform; /* Performance optimization for smoother blur */
+  backface-visibility: hidden; /* Prevent rendering artifacts */
+  perspective: 1000; /* Further prevent rendering artifacts */
+  overflow: hidden; /* Hide any overflow */
+}
+
+/* Ensure the background's ::before overlay with opacity is above the blur layer */
+.bg-image.bg-overlay::before {
+  z-index: 1 !important;
+}
+
+/* Make sure content in these sections is above the blur */
+section.image-wrapper.bg-image .container {
+  position: relative;
+  z-index: 2 !important;
 }
 
 img.loading {

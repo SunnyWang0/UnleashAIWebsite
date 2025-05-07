@@ -16,10 +16,11 @@ const glob = require('glob');
 const config = {
   sourceDir: '../dist/assets/img/photos/',
   targetDir: '../dist/assets/img/photos/optimized/',
-  sizes: [1200, 2400, 3600], // Higher quality responsive image sizes
+  sizes: [800, 1200, 2400, 3600], // Include 800px for faster initial loading
   quality: {
-    standard: 85,    // Quality for regular sizes
-    maximum: 90      // Higher quality for largest images
+    low: 75,       // Lowest quality for 800px (faster loading)
+    standard: 85,  // Quality for regular sizes
+    maximum: 90    // Higher quality for largest images
   },
   formats: ['jpg', 'webp'], // Output formats
   sourceFormats: ['jpg', 'jpeg', 'png'] // Source formats to process
@@ -63,8 +64,14 @@ async function processImages() {
     // Process each size and format
     for (const size of sizes) {
       // Determine quality setting based on size
-      const isLargeImage = size >= 2400;
-      const qualitySetting = isLargeImage ? config.quality.maximum : config.quality.standard;
+      let qualitySetting;
+      if (size <= 800) {
+        qualitySetting = config.quality.low;
+      } else if (size >= 2400) {
+        qualitySetting = config.quality.maximum;
+      } else {
+        qualitySetting = config.quality.standard;
+      }
       
       for (const format of config.formats) {
         const outputFilename = `${filename}-${size}.${format}`;
@@ -80,7 +87,7 @@ async function processImages() {
         if (format === 'webp') {
           pipeline = pipeline.webp({ 
             quality: qualitySetting,
-            effort: 4 // Higher effort level for better compression
+            effort: size <= 800 ? 3 : 4 // Lower effort for smaller sizes for faster encoding
           });
         } else if (format === 'jpg' || format === 'jpeg') {
           pipeline = pipeline.jpeg({ 

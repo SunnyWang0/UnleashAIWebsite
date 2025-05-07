@@ -52,23 +52,19 @@ document.addEventListener('DOMContentLoaded', function() {
     return 'high';
   }
 
-  // Function to check if an image is a logo
+  // Function to check if an image is a logo - exclude these from any processing
   function isLogo(img) {
-    // Check if the image has any of these logo-related classes or is in a logo path
     return img.classList.contains('logo-dark') || 
            img.classList.contains('logo-light') || 
            img.classList.contains('loader-logo') ||
-           (img.src && img.src.includes('/logo')) ||
+           (img.src && (img.src.includes('logo') || img.src.includes('Logo'))) ||
            img.closest('.navbar-brand') !== null;
   }
 
   // Handle image loading with fade-in effect
   function handleImageLoad(img) {
-    // Skip logos - no loading effects for them
+    // Skip logo images completely
     if (isLogo(img)) {
-      // Remove any loading classes that might have been applied
-      img.classList.remove('loading');
-      img.classList.remove('blur-up');
       return;
     }
     
@@ -132,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const allImages = document.querySelectorAll('img');
     
     allImages.forEach(img => {
-      // Skip logos
+      // Skip logo images completely
       if (isLogo(img)) {
         return;
       }
@@ -192,6 +188,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const imageSrc = element.getAttribute('data-image-src');
       
       if (imageSrc) {
+        // Skip logo backgrounds completely
+        if (imageSrc.includes('logo') || imageSrc.includes('Logo')) {
+          return;
+        }
+        
         // Add blur-loading class to start the blur effect
         element.classList.add('blur-loading');
         
@@ -253,6 +254,11 @@ document.addEventListener('DOMContentLoaded', function() {
       let imageSrc = element.getAttribute('data-image-src');
       
       if (imageSrc && imageSrc.includes('-800.webp')) {
+        // Skip logo backgrounds completely
+        if (imageSrc.includes('logo') || imageSrc.includes('Logo')) {
+          return;
+        }
+        
         // Create the high-quality version path
         const highQualitySrc = imageSrc.replace('-800.webp', '.webp');
         
@@ -278,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (entry.isIntersecting) {
           const img = entry.target;
           
-          // Skip logos
+          // Skip logos completely
           if (isLogo(img)) {
             observer.unobserve(img);
             return;
@@ -293,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Find all images with data-src attribute
     const lazyImages = document.querySelectorAll('img[data-src], img[data-srcset]');
     lazyImages.forEach(img => {
-      // Skip logos
+      // Skip logos completely
       if (!isLogo(img)) {
         imgObserver.observe(img);
       }
@@ -302,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fallback for browsers that don't support IntersectionObserver
     const lazyImages = document.querySelectorAll('img[data-src], img[data-srcset]');
     lazyImages.forEach(img => {
-      // Skip logos
+      // Skip logos completely
       if (!isLogo(img)) {
         handleImageLoad(img);
       }
@@ -314,6 +320,11 @@ document.addEventListener('DOMContentLoaded', function() {
   bgElements.forEach(element => {
     const imageSrc = element.getAttribute('data-image-src');
     if (imageSrc) {
+      // Skip logo backgrounds completely
+      if (imageSrc.includes('logo') || imageSrc.includes('Logo')) {
+        return;
+      }
+      
       // Set initial CSS variable for the background image
       element.style.setProperty('--bg-image-url', `url('${imageSrc}')`);
     }
@@ -336,12 +347,20 @@ document.addEventListener('DOMContentLoaded', function() {
     resizeTimer = setTimeout(prioritizeFirstViewportImages, 250);
   });
   
-  // Clean up any blur effects that might have been applied to logos
+  // Clean up any effects that might have been applied to logos
   document.querySelectorAll('img').forEach(img => {
     if (isLogo(img)) {
-      img.classList.remove('loading', 'blur-up', 'blur-up-processed');
-      img.style.filter = 'none';
-      img.style.opacity = '1';
+      // Remove any classes or styles that might affect logos
+      img.classList.remove('loading', 'blur-up', 'blur-up-processed', 'loaded');
+      img.style.filter = '';
+      img.style.opacity = '';
+      img.style.transition = '';
+      img.style.transform = '';
+      
+      // Remove lazy loading from logos - they should load immediately
+      img.removeAttribute('loading');
+      img.removeAttribute('data-src');
+      img.removeAttribute('data-srcset');
     }
   });
 }); 

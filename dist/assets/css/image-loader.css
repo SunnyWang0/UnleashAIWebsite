@@ -3,16 +3,18 @@ img {
   transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
-/* Logo-specific styles to ensure no transitions or effects are applied */
-img.logo-dark, 
-img.logo-light, 
-img.loader-logo,
+/* Logo exclusions - completely exclude logos from any effects */
+.logo-dark, 
+.logo-light, 
+.loader-logo,
 img[src*="logo"],
+img[src*="Logo"],
 .navbar-brand img {
   transition: none !important;
   filter: none !important;
   opacity: 1 !important;
   transform: none !important;
+  animation: none !important;
 }
 
 img.loading {

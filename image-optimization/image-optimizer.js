@@ -16,12 +16,8 @@ const glob = require('glob');
 const config = {
   sourceDir: '../dist/assets/img/photos/',
   targetDir: '../dist/assets/img/photos/optimized/',
-  sizes: [800, 1200, 2400, 3600], // Include 800px for faster initial loading
-  quality: {
-    low: 75,       // Lowest quality for 800px (faster loading)
-    standard: 85,  // Quality for regular sizes
-    maximum: 90    // Higher quality for largest images
-  },
+  sizes: [800, 1200, 1600], // Responsive image sizes
+  quality: 80,  // JPEG/WebP quality
   formats: ['jpg', 'webp'], // Output formats
   sourceFormats: ['jpg', 'jpeg', 'png'] // Source formats to process
 };
@@ -56,23 +52,8 @@ async function processImages() {
     // Only generate smaller sizes
     const sizes = config.sizes.filter(size => size < metadata.width);
     
-    // If original is smaller than our largest size, include the original dimensions
-    if (sizes.length === 0 || (sizes.length < config.sizes.length && metadata.width < config.sizes[config.sizes.length - 1])) {
-      sizes.push(metadata.width);
-    }
-    
     // Process each size and format
     for (const size of sizes) {
-      // Determine quality setting based on size
-      let qualitySetting;
-      if (size <= 800) {
-        qualitySetting = config.quality.low;
-      } else if (size >= 2400) {
-        qualitySetting = config.quality.maximum;
-      } else {
-        qualitySetting = config.quality.standard;
-      }
-      
       for (const format of config.formats) {
         const outputFilename = `${filename}-${size}.${format}`;
         const outputPath = path.join(config.targetDir, outputFilename);
@@ -85,18 +66,9 @@ async function processImages() {
         
         // Set format-specific options
         if (format === 'webp') {
-          pipeline = pipeline.webp({ 
-            quality: qualitySetting,
-            effort: size <= 800 ? 3 : 4 // Lower effort for smaller sizes for faster encoding
-          });
+          pipeline = pipeline.webp({ quality: config.quality });
         } else if (format === 'jpg' || format === 'jpeg') {
-          pipeline = pipeline.jpeg({ 
-            quality: qualitySetting, 
-            mozjpeg: true,
-            trellisQuantisation: true,
-            overshootDeringing: true,
-            optimizeScans: true
-          });
+          pipeline = pipeline.jpeg({ quality: config.quality, mozjpeg: true });
         }
         
         // Save the image
@@ -105,30 +77,13 @@ async function processImages() {
       }
     }
     
-    // Also create a full-size WebP version in maximum quality
+    // Also create a WebP version of the original size
     const originalWebP = `${filename}.webp`;
     const originalWebPPath = path.join(config.targetDir, originalWebP);
     await image.clone()
-      .webp({ 
-        quality: config.quality.maximum,
-        effort: 5 // Maximum effort for original size
-      })
+      .webp({ quality: config.quality })
       .toFile(originalWebPPath);
-    console.log(`Created ${originalWebPPath} (full size)`);
-    
-    // Create a full-size JPG version in maximum quality
-    const originalJpg = `${filename}.jpg`;
-    const originalJpgPath = path.join(config.targetDir, originalJpg);
-    await image.clone()
-      .jpeg({ 
-        quality: config.quality.maximum,
-        mozjpeg: true,
-        trellisQuantisation: true,
-        overshootDeringing: true,
-        optimizeScans: true
-      })
-      .toFile(originalJpgPath);
-    console.log(`Created ${originalJpgPath} (full size)`);
+    console.log(`Created ${originalWebPPath}`);
   }
   
   console.log('Image optimization complete!');
@@ -147,7 +102,7 @@ function createPictureElements() {
   for (const file of files) {
     const filename = path.basename(file, path.extname(file));
     const sourceFormat = path.extname(file).substring(1).toLowerCase();
-    const sizes = config.sizes;
+    const sizes = config.sizes.filter(size => size < 1600); // Assuming original is larger
     
     html += `<picture>\n`;
     html += `  <!-- ${filename} -->\n`;
@@ -156,20 +111,19 @@ function createPictureElements() {
     // Add responsive sizes for WebP
     if (sizes.length > 0) {
       html += `  <source type="image/webp" \n`;
-      html += `    srcset="photos/optimized/${filename}.webp, ${sizes.map(size => `\n             photos/optimized/${filename}-${size}.webp ${size}w`).join(',')}" \n`;
-      html += `    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 100vw">\n`;
+      html += `    srcset="${sizes.map(size => `photos/optimized/${filename}-${size}.webp ${size}w`).join(',\n             ')}" \n`;
+      html += `    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw">\n`;
     }
     
     // Add responsive sizes for original format
     if (sizes.length > 0) {
       const mimeType = sourceFormat === 'png' ? 'image/png' : 'image/jpeg';
       html += `  <source type="${mimeType}" \n`;
-      html += `    srcset="photos/optimized/${filename}.jpg, ${sizes.map(size => `\n             photos/optimized/${filename}-${size}.${sourceFormat === 'png' ? 'jpg' : 'jpg'} ${size}w`).join(',')}" \n`;
-      html += `    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 100vw">\n`;
+      html += `    srcset="${sizes.map(size => `photos/optimized/${filename}-${size}.${sourceFormat === 'png' ? 'png' : 'jpg'} ${size}w`).join(',\n             ')}" \n`;
+      html += `    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 60vw">\n`;
     }
     
-    // Default to the highest quality image
-    html += `  <img src="photos/optimized/${filename}.${sourceFormat}" alt="${filename}" loading="lazy" decoding="async" class="rounded">\n`;
+    html += `  <img src="photos/${filename}.${sourceFormat}" alt="${filename}" loading="lazy" decoding="async" class="rounded">\n`;
     html += `</picture>\n\n`;
   }
   

@@ -15,14 +15,22 @@
   <title>UnleashAI - AI Automation Consulting and Solutions</title>
   <link rel="shortcut icon" href="./assets/img/favicon.png" media="(prefers-color-scheme: light)">
   <link rel="shortcut icon" href="./assets/img/faviconWhite.png" media="(prefers-color-scheme: dark)">
-  <!-- google fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- DNS Prefetch and Preconnect -->
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="canonical" href="https://www.unleashai.site/DigitalAsset.html">
+  <meta name="robots" content="index, follow">
+  <!-- google fonts -->
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- fonts -->
 	<link rel="stylesheet" type="text/css" href="./assets/fonts/unicons/unicons.css">
   <link rel="stylesheet" href="./assets/css/plugins.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./assets/css/image-loader.css">
   <!-- Style override for fixed header button -->
   <style>
     .navbar.navbar-light.fixed .btn:not(.btn-expand):not(.btn-gradient) {
@@ -142,6 +150,19 @@
     </header>
     <!-- /header -->
     <section class="wrapper image-wrapper bg-image bg-overlay text-white bg-no-repeat bg-[center_bottom_10%] bg-cover relative z-0 !bg-fixed before:content-[''] before:block before:absolute before:z-[1] before:w-full before:h-full before:left-0 before:top-0 before:bg-[rgba(30,34,40,0.5)]" data-image-src="./assets/img/photos/DigitalAsset.jpg">
+      <picture>
+        <source type="image/webp" srcset="./assets/img/photos/optimized/DigitalAsset.webp">
+        <source type="image/webp" 
+          srcset="./assets/img/photos/optimized/DigitalAsset-800.webp 800w,
+                  ./assets/img/photos/optimized/DigitalAsset-1200.webp 1200w,
+                  ./assets/img/photos/optimized/DigitalAsset-1600.webp 1600w" 
+          sizes="100vw">
+        <img src="./assets/img/photos/DigitalAsset.jpg" 
+             alt="Digital Asset Hero Image" 
+             class="position-absolute w-full h-full object-cover"
+             loading="eager"
+             style="z-index: -1;">
+      </picture>
       <div class="container pt-28 pb-14 xl:pt-36 lg:pt-36 md:pt-36 xl:pb-24 lg:pb-24 md:pb-24 !text-center">
         <div class="flex flex-wrap mx-[-15px]">
           <div class="md:w-10/12 lg:w-8/12 xl:w-7/12 w-full flex-[0_0_auto] px-[15px] max-w-full !mx-auto">
@@ -311,6 +332,7 @@
   </div>
   <script src="./assets/js/plugins.js"></script>
   <script src="./assets/js/theme.js"></script>
+  <script src="./assets/js/image-loader.js"></script>
 </body>
 
 </html>

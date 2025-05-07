@@ -149,7 +149,20 @@
       <!-- /.navbar -->
     </header>
     <!-- /header -->
-    <section class="wrapper image-wrapper bg-image bg-overlay text-white bg-no-repeat bg-[center_bottom_10%] bg-cover relative z-0 !bg-fixed before:content-[''] before:block before:absolute before:z-[1] before:w-full before:h-full before:left-0 before:top-0 before:bg-[rgba(30,34,40,0.5)]" data-image-src="./assets/img/photos/optimized/DigitalAsset-800.webp">
+    <section class="wrapper image-wrapper bg-image bg-overlay text-white bg-no-repeat bg-[center_bottom_10%] bg-cover relative z-0 !bg-fixed before:content-[''] before:block before:absolute before:z-[1] before:w-full before:h-full before:left-0 before:top-0 before:bg-[rgba(30,34,40,0.5)]">
+      <picture class="absolute inset-0 w-full h-full -z-[1]">
+        <source type="image/webp" srcset="./assets/img/photos/optimized/DigitalAsset.webp">
+        <source type="image/webp" 
+          srcset="./assets/img/photos/optimized/DigitalAsset-800.webp 800w,
+                  ./assets/img/photos/optimized/DigitalAsset-1200.webp 1200w,
+                  ./assets/img/photos/optimized/DigitalAsset-1600.webp 1600w" 
+          sizes="100vw">
+        <img class="w-full h-full object-cover" 
+             src="./assets/img/photos/DigitalAsset.jpg" 
+             alt="Digital Asset Background"
+             loading="eager"
+             fetchpriority="high">
+      </picture>
       <div class="container pt-28 pb-14 xl:pt-36 lg:pt-36 md:pt-36 xl:pb-24 lg:pb-24 md:pb-24 !text-center">
         <div class="flex flex-wrap mx-[-15px]">
           <div class="md:w-10/12 lg:w-8/12 xl:w-7/12 w-full flex-[0_0_auto] px-[15px] max-w-full !mx-auto">

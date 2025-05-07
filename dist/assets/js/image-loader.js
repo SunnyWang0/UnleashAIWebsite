@@ -104,32 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
     newImg.src = src;
   }
   
-  // Handle hero section background images
-  function handleHeroImages() {
-    // Find all hero section images (within picture elements in image-wrapper)
-    const heroImgs = document.querySelectorAll('.image-wrapper picture img');
-    
-    heroImgs.forEach(img => {
-      // Start with blur
-      img.classList.add('loading');
-      
-      // Check if image is loaded
-      if (img.complete) {
-        img.classList.remove('loading');
-        img.classList.add('loaded');
-      } else {
-        // When the image loads
-        img.onload = function() {
-          // Wait a bit for a smoother effect
-          setTimeout(() => {
-            img.classList.remove('loading');
-            img.classList.add('loaded');
-          }, 100);
-        };
-      }
-    });
-  }
-  
   // Prioritize first-viewport images
   function prioritizeFirstViewportImages() {
     // Get viewport dimensions
@@ -285,9 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Prioritize first viewport images
     prioritizeFirstViewportImages();
     
-    // Handle hero section images immediately
-    handleHeroImages();
-    
     // Apply blur-up technique
     applyBlurUpTechnique();
     
@@ -317,9 +288,6 @@ document.addEventListener('DOMContentLoaded', function() {
     lazyImages.forEach(img => {
       handleImageLoad(img);
     });
-    
-    // Handle hero images
-    handleHeroImages();
     
     // Still optimize background images
     optimizeBackgroundImages();

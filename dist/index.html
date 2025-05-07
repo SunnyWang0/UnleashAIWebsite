@@ -12,6 +12,16 @@
   <meta name="keywords"
     content="Custom AI solutions, AI for small business, AI for medium business, Increase revenue with AI, Streamline operations with AI, Reduce costs with AI, AI automation for business, Personalized AI, Business efficiency solutions, Machine learning for business, AI consulting services, Business process automation, AI-powered growth, Improve customer experience with AI, Cost-cutting solutions, benefits of AI for small businesses">
   <meta name="author" content="elemis">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <!-- Preconnect for critical resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preload critical above-fold images -->
+  <link rel="preload" href="./assets/img/photos/optimized/hero6.webp" as="image" type="image/webp">
+  <link rel="preload" href="./assets/img/svg/logo-dark.svg" as="image" type="image/svg+xml">
   <title>UnleashAI - AI Automation Consulting and Solutions</title>
   <link rel="shortcut icon" href="./assets/img/favicon.png" media="(prefers-color-scheme: light)">
   <link rel="shortcut icon" href="./assets/img/faviconWhite.png" media="(prefers-color-scheme: dark)">
@@ -29,6 +39,7 @@
   <link rel="preload" href="./assets/css/fonts/thicccboi.css" as="style" onload="this.rel='stylesheet'">
   <link rel="stylesheet" href="./assets/css/icon.css">
   <link rel="stylesheet" href="./assets/css/page-loader.css">
+  <link rel="stylesheet" href="./assets/css/image-loader.css">
   <style>
     .navbar.navbar-light.fixed .btn:not(.btn-expand):not(.btn-gradient) {
       background: #54a8c7 !important;
@@ -144,7 +155,7 @@
     <!-- /header -->
     <section
       class="wrapper image-wrapper bg-image bg-overlay text-white bg-no-repeat bg-cover bg-center relative border-0 before:content-[''] before:block before:absolute before:z-[1] before:w-full before:h-full before:left-0 before:top-0 before:bg-[rgba(30,34,40,0.62)]"
-      data-image-src="./assets/img/photos/hero6.jpg"
+      data-image-src="./assets/img/photos/optimized/hero6.webp"
       style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5rem), 0 100%); background-position: center 18%;">
       <div class="container pt-40 xl:pt-44 lg:pt-44 md:pt-44 pb-40 xl:pb-44 lg:pb-44 md:pb-44 max-w-[1400px]">
         <div class="flex flex-wrap mx-0 mt-[-50px] items-center">
@@ -234,8 +245,20 @@
               data-rellax-speed="1" style="top: -2rem; left: -1.9rem;"></div>
             <div class="shape !rounded-[.4rem] !bg-[#edf2fc] rellax xl:block lg:block md:block !absolute z-[1]"
               data-rellax-speed="0" style="bottom: -1.8rem; right: -1.5rem; width: 85%; height: 90%; "></div>
-            <figure class="!rounded-[.4rem] relative z-[2]"><img class="!rounded-[.4rem]"
-                src="./assets/img/photos/memphis3.webp" srcset="./assets/img/photos/memphis3.webp 2x" alt="image"></figure>
+            <figure class="!rounded-[.4rem] relative z-[2]">
+              <picture>
+                <source type="image/webp" srcset="./assets/img/photos/optimized/Memphis-800.webp 800w,
+                                                ./assets/img/photos/optimized/Memphis-1200.webp 1200w,
+                                                ./assets/img/photos/optimized/Memphis-1600.webp 1600w"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 580px">
+                <img class="!rounded-[.4rem]"
+                    src="./assets/img/photos/memphis3.webp" 
+                    srcset="./assets/img/photos/memphis3.webp 2x" 
+                    alt="Memphis Image"
+                    fetchpriority="high"
+                    class="above-fold">
+              </picture>
+            </figure>
           </div>
           <!--/column -->
           <div
@@ -283,7 +306,7 @@
     <!-- /section -->
     <section
       class="wrapper image-wrapper bg-image bg-overlay !bg-fixed bg-no-repeat bg-[center_center] bg-cover relative z-0 before:content-[''] before:block before:absolute before:z-[1] before:w-full before:h-full before:left-0 before:top-0 before:bg-[rgba(30,34,40,.5)]"
-      data-image-src="./assets/img/photos/background.jpg">
+      data-image-src="./assets/img/photos/optimized/background.webp">
       <div class="container py-[6rem]">
         <div class="flex flex-wrap mx-[-15px]">
           <div class="xl:w-8/12 lg:w-8/12 w-full flex-[0_0_auto] px-[15px] max-w-full">
@@ -321,7 +344,18 @@
               <div class="swiper-slide">
                 <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
                   <a href="./CapitalRaise.html" class="block w-full h-full">
-                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/CapitalRaise.jpg" alt="image">
+                    <picture>
+                      <source type="image/webp" srcset="./assets/img/photos/optimized/CapitalRaise.webp">
+                      <source type="image/webp" 
+                        srcset="./assets/img/photos/optimized/CapitalRaise-800.webp 800w,
+                                ./assets/img/photos/optimized/CapitalRaise-1200.webp 1200w" 
+                        sizes="(max-width: 768px) 100vw, 380px">
+                      <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" 
+                           src="./assets/img/photos/CapitalRaise.jpg" 
+                           alt="Capital Raise Case Study"
+                           loading="lazy"
+                           decoding="async">
+                    </picture>
                     <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
                       <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
@@ -336,7 +370,18 @@
               <div class="swiper-slide">
                 <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
                   <a href="./EnergyServices.html" class="block w-full h-full">
-                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/EnergyServices.jpg" alt="image">
+                    <picture>
+                      <source type="image/webp" srcset="./assets/img/photos/optimized/EnergyServices.webp">
+                      <source type="image/webp" 
+                        srcset="./assets/img/photos/optimized/EnergyServices-800.webp 800w,
+                                ./assets/img/photos/optimized/EnergyServices-1200.webp 1200w" 
+                        sizes="(max-width: 768px) 100vw, 380px">
+                      <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" 
+                           src="./assets/img/photos/EnergyServices.jpg" 
+                           alt="Energy Services Case Study"
+                           loading="lazy"
+                           decoding="async">
+                    </picture>
                     <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
                       <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
@@ -351,7 +396,18 @@
               <div class="swiper-slide">
                 <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
                   <a href="./CommunicationsTechnology.html" class="block w-full h-full">
-                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/CommTech_wide.jpg" alt="image">
+                    <picture>
+                      <source type="image/webp" srcset="./assets/img/photos/optimized/CommTech_wide.webp">
+                      <source type="image/webp" 
+                        srcset="./assets/img/photos/optimized/CommTech_wide-800.webp 800w,
+                                ./assets/img/photos/optimized/CommTech_wide-1200.webp 1200w" 
+                        sizes="(max-width: 768px) 100vw, 380px">
+                      <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" 
+                           src="./assets/img/photos/CommTech_wide.jpg" 
+                           alt="Communications Technology Case Study"
+                           loading="lazy"
+                           decoding="async">
+                    </picture>
                     <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
                       <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
@@ -366,7 +422,18 @@
               <div class="swiper-slide">
                 <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
                   <a href="./EventServices.html" class="block w-full h-full">
-                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/EventServices.jpg" alt="image">
+                    <picture>
+                      <source type="image/webp" srcset="./assets/img/photos/optimized/EventServices.webp">
+                      <source type="image/webp" 
+                        srcset="./assets/img/photos/optimized/EventServices-800.webp 800w,
+                                ./assets/img/photos/optimized/EventServices-1200.webp 1200w" 
+                        sizes="(max-width: 768px) 100vw, 380px">
+                      <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" 
+                           src="./assets/img/photos/EventServices.jpg" 
+                           alt="Event Services Case Study"
+                           loading="lazy"
+                           decoding="async">
+                    </picture>
                     <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
                       <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
@@ -381,7 +448,18 @@
               <div class="swiper-slide">
                 <figure class="overlay overlay-1 hover-scale rounded !mb-6 group h-[220px] overflow-hidden">
                   <a href="./DigitalAsset.html" class="block w-full h-full">
-                    <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" src="./assets/img/photos/DigitalAsset.jpg" alt="image">
+                    <picture>
+                      <source type="image/webp" srcset="./assets/img/photos/optimized/DigitalAsset.webp">
+                      <source type="image/webp" 
+                        srcset="./assets/img/photos/optimized/DigitalAsset-800.webp 800w,
+                                ./assets/img/photos/optimized/DigitalAsset-1200.webp 1200w" 
+                        sizes="(max-width: 768px) 100vw, 380px">
+                      <img class="!transition-all !duration-[0.35s] !ease-in-out group-hover:scale-105 w-full h-full object-cover" 
+                           src="./assets/img/photos/DigitalAsset.jpg" 
+                           alt="Digital Asset Case Study"
+                           loading="lazy"
+                           decoding="async">
+                    </picture>
                     <figcaption class="group-hover:opacity-100 absolute w-full h-full opacity-0 text-center px-4 py-3 inset-0 z-[5] p-2">
                       <h5 class="from-top !mb-0 absolute w-full translate-y-[-80%] p-[.75rem_1rem] left-0 top-2/4">Read More</h5>
                     </figcaption>
@@ -444,6 +522,7 @@
   </div>
   <script src="./assets/js/plugins.js"></script>
   <script src="./assets/js/theme.js"></script>
+  <script src="./assets/js/image-loader.js"></script>
 </body>
 
 </html>

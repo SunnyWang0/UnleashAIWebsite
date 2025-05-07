@@ -1,0 +1,13 @@
+{
+  "name": "unleash-ai-image-optimizer",
+  "version": "1.0.0",
+  "description": "Image optimization tools for UnleashAI website",
+  "main": "image-optimizer.js",
+  "scripts": {
+    "optimize": "node image-optimizer.js"
+  },
+  "dependencies": {
+    "sharp": "^0.32.1",
+    "glob": "^8.1.0"
+  }
+} 

@@ -775,6 +775,13 @@ var theme = {
               event.stopPropagation();
             }
             form.classList.add("was-validated");
+            
+            // Allow Formspree forms to submit naturally
+            if(form.classList.contains('formspree-form')) {
+              // Let the form submit naturally to Formspree
+              return true;
+            }
+            
             if(form.checkValidity() === true) {
               event.preventDefault();
               form.classList.remove("was-validated");

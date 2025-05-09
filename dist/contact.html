@@ -194,8 +194,8 @@
                   </div>
                 </form>
                 <!-- Success message div that will be shown after form submission -->
-                <div id="success-message" class="hidden relative h-[500px]">
-                  <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <div id="success-message" class="hidden py-24">
+                  <div class="flex flex-col items-center justify-center">
                     <div class="icon text-[#54a8c7] text-[4rem] mb-6">
                       <i class="uil uil-check-circle before:content-['\eb8f']"></i>
                     </div>
@@ -289,8 +289,8 @@
           })
           .then(response => {
             if (response.ok) {
-              // Success - hide form and show success message
-              form.style.display = 'none';
+              // Success - hide form content and show success message
+              formContent.style.display = 'none';
               successMessage.classList.remove('hidden');
               form.reset();
             } else {

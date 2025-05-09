@@ -140,9 +140,9 @@
           <div class="md:w-10/12 lg:w-9/12 xl:w-8/12 w-full flex-[0_0_auto] px-[15px] max-w-full !mx-auto">
             <div class="flex flex-wrap mx-[-15px] mt-[-20px] xl:mx-[-35px] lg:mx-[-20px] bg-white rounded-lg shadow-[0_0.25rem_1.75rem_rgba(30,34,40,0.07)] px-6 lg:px-8 py-4 lg:py-6">
               <div class="w-full flex-[0_0_auto] max-w-full mt-[50px]">
-                <form action="https://formspree.io/f/xldblrgq" method="POST" class="needs-validation formspree-form">
+                <form id="contact-form" action="https://formspree.io/f/xldblrgq" method="POST" class="needs-validation formspree-form">
                   <div class="messages"></div>
-                  <div class="flex flex-wrap mx-[-10px]">
+                  <div id="form-content" class="flex flex-wrap mx-[-10px]">
                     <div class="xl:w-6/12 lg:w-6/12 md:w-6/12 w-full flex-[0_0_auto] px-[15px] max-w-full">
                       <div class="form-floating relative !mb-6">
                         <input id="form_name" type="text" name="name" class="form-control relative block w-full text-[.8rem] font-medium text-[#60697b] bg-[#fefefe] bg-clip-padding border shadow-[0_0_1.25rem_rgba(30,34,40,0.04)] rounded-[0.4rem] border-solid border-[#54a8c7] border-opacity-30 transition-all duration-200 ease-in-out focus:text-[#60697b] focus:bg-[rgba(255,255,255,.03)] focus:shadow-[0_0_1.25rem_rgba(30,34,40,0.04),unset] focus:!border-[#54a8c7] focus-visible:!border-[#54a8c7] focus-visible:!outline-0 placeholder:text-[#959ca9] placeholder:opacity-100 m-0 !pr-9 p-[.7rem_1rem] h-[calc(2.8rem_+_2px)] min-h-[calc(2.8rem_+_2px)] leading-[1.25]" placeholder="Jane" required>
@@ -193,6 +193,14 @@
                     </div>
                   </div>
                 </form>
+                <!-- Success message div that will be shown after form submission -->
+                <div id="success-message" class="hidden text-center py-12">
+                  <div class="icon text-[#54a8c7] text-[3rem] mb-4">
+                    <i class="uil uil-check-circle before:content-['\eb8f']"></i>
+                  </div>
+                  <h3 class="text-[1.25rem] font-bold text-[#343f52] mb-4">Thank you for your message!</h3>
+                  <p class="text-[#60697b] mb-4">We'll get back to you as soon as possible.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -252,6 +260,66 @@
   </div>
   <script src="./assets/js/plugins.js"></script>
   <script src="./assets/js/theme.js"></script>
+  <!-- Add the AJAX submission script before the closing body tag -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contact-form');
+      const formContent = document.getElementById('form-content');
+      const successMessage = document.getElementById('success-message');
+      
+      if (form) {
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          
+          // Show a subtle loading state on the button
+          const submitButton = form.querySelector('button[type="submit"]');
+          const originalButtonText = submitButton.innerHTML;
+          submitButton.innerHTML = 'Sending...';
+          submitButton.disabled = true;
+          
+          // Use fetch API to submit the form
+          fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            headers: {
+              'Accept': 'application/json'
+            }
+          })
+          .then(response => {
+            if (response.ok) {
+              // Success - hide form and show success message
+              formContent.classList.add('hidden');
+              successMessage.classList.remove('hidden');
+              form.reset();
+            } else {
+              // Error handling
+              response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                  const errorMsg = data['errors'].map(error => error['message']).join(', ');
+                  showErrorMessage(errorMsg);
+                } else {
+                  showErrorMessage('Something went wrong. Please try again later.');
+                }
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+              });
+            }
+          })
+          .catch(error => {
+            showErrorMessage('Something went wrong. Please try again later.');
+            submitButton.innerHTML = originalButtonText;
+            submitButton.disabled = false;
+          });
+        });
+      }
+      
+      function showErrorMessage(message) {
+        const messagesDiv = document.querySelector('.messages');
+        const alertBox = `<div class="alert alert-danger alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>${message}</div>`;
+        messagesDiv.innerHTML = alertBox;
+      }
+    });
+  </script>
 </body>
 
 </html>

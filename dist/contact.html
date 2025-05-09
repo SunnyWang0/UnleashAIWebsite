@@ -194,12 +194,14 @@
                   </div>
                 </form>
                 <!-- Success message div that will be shown after form submission -->
-                <div id="success-message" class="hidden flex flex-col justify-center items-center min-h-[400px] text-center">
-                  <div class="icon text-[#54a8c7] text-[3rem] mb-4">
-                    <i class="uil uil-check-circle before:content-['\eb8f']"></i>
+                <div id="success-message" class="hidden relative h-[500px]">
+                  <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <div class="icon text-[#54a8c7] text-[4rem] mb-6">
+                      <i class="uil uil-check-circle before:content-['\eb8f']"></i>
+                    </div>
+                    <h3 class="text-[1.5rem] font-bold text-[#343f52] mb-4">Thank you for your message!</h3>
+                    <p class="text-[1rem] text-[#60697b]">We'll get back to you as soon as possible.</p>
                   </div>
-                  <h3 class="text-[1.25rem] font-bold text-[#343f52] mb-4">Thank you for your message!</h3>
-                  <p class="text-[#60697b] mb-4">We'll get back to you as soon as possible.</p>
                 </div>
               </div>
             </div>
@@ -288,7 +290,7 @@
           .then(response => {
             if (response.ok) {
               // Success - hide form and show success message
-              formContent.classList.add('hidden');
+              form.style.display = 'none';
               successMessage.classList.remove('hidden');
               form.reset();
             } else {

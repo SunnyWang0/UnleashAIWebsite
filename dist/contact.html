@@ -194,11 +194,9 @@
                   </div>
                 </form>
                 <!-- Success message div that will be shown after form submission -->
-                <div id="success-message" class="hidden py-10 h-[300px]">
-                  <div class="flex flex-col items-center justify-center h-full mt-[-100px]">
-                    <h3 class="text-[1.5rem] font-bold text-[#343f52] mb-3">Thank you for your message!</h3>
-                    <p class="text-[1rem] text-[#60697b]">We'll get back to you as soon as possible.</p>
-                  </div>
+                <div id="success-message" class="hidden flex flex-col justify-center items-center h-[100px] pb-6">
+                  <h3 class="text-[1.25rem] font-bold text-[#343f52] mb-3">Thank you for your message!</h3>
+                  <p class="text-[#60697b]">We'll get back to you as soon as possible.</p>
                 </div>
               </div>
             </div>
@@ -286,8 +284,8 @@
           })
           .then(response => {
             if (response.ok) {
-              // Success - hide form content and show success message
-              formContent.style.display = 'none';
+              // Success - hide form and show success message
+              formContent.classList.add('hidden');
               successMessage.classList.remove('hidden');
               form.reset();
             } else {

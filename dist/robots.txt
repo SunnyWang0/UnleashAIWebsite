@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /assets/unused/
 
-Sitemap: https://www.unleashai.site/sitemap.xml 
+Sitemap: https://unleashai.site/sitemap.xml 

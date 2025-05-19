@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "http://unleashai.site/:path*",
+      "destination": "https://unleashai.site/:path*",
+      "permanent": true
+    },
+    {
+      "source": "http://www.unleashai.site/:path*",
+      "destination": "https://unleashai.site/:path*",
+      "permanent": true
+    },
+    {
+      "source": "https://www.unleashai.site/:path*",
+      "destination": "https://unleashai.site/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/testimonials.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+} 

@@ -1,5 +1,36 @@
 User-agent: *
 Allow: /
 Disallow: /assets/unused/
+Crawl-delay: 0
 
-Sitemap: https://unleashai.site/sitemap.xml 
+# LLM/AI Bot Access
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Search Engine Optimization
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Important Files
+Sitemap: https://unleashai.site/sitemap.xml
+LLMs: https://unleashai.site/llms.txt
